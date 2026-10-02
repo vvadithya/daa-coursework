@@ -1,0 +1,22 @@
+FOR SECOND MIN AND SECOND MAX
+
+this does not handle duplicates just lyk
+
+
+so depends on the problems definition of a second min/second max
+
+lets say
+
+arr = [5 , 5 , 9 , 11]
+
+first_min = 5
+second_min = 5 asw
+
+but if the questions wants to ensure that first_min != second_min or smnof that sort
+
+the map approach is THE EXACT SAME
+
+its just instead of using *min_element just dont be lazy and write ur own loop where u add this check
+
+
+same edge case for second max aswell

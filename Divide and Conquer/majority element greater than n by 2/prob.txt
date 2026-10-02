@@ -1,0 +1,1 @@
+Given an array of n elements, find the element that appears more than n/2 times.

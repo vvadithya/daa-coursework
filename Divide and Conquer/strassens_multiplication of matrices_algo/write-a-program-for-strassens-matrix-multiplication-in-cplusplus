@@ -1,0 +1,463 @@
+<!doctype html><html lang="en-us"><head><meta name="google-site-verification" content="BTwEAWZqEgf4CrYxjspSE7rNxZXx-Gy-E-OFObafSBc" /><meta name="msvalidate.01" content="DC6B71DFDE79839EBA7B71ED8079A6B1" /><meta name="yandex-verification" content="34b2404e3ee3edb7" /><meta http-equiv="content-type" content="text/html;charset=UTF-8"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#003366" /><title>Write A Program For Strassens Matrix Multiplication In C++ - W3CODEWORLD</title><meta name="description" content="Write A Program For Strassens Matrix Multiplication In C++" /><meta name="keywords" content="Write A Program For Strassens Matrix Multiplication In C++" /><meta name="robots" content="index, follow"><meta name="author" content="https://w3codeworld.com/"><link rel="alternate" href="https://w3codeworld.com/article/726/write-a-program-for-strassens-matrix-multiplication-in-cplusplus" hreflang="en-us" /><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><link rel="shortcut icon" type="image/png" href="https://w3codeworld.com/images/favicon.png"><link rel="stylesheet" href="https://w3codeworld.com/css/style.css"><link rel="preconnect" href="https://fonts.gstatic.com"></head><body><div class="container-wrapper"> <header id="header"> <nav class="navbar navbar-primary navbar-fixed-top navbar-sticky-function navbar_bg"><div class="container"><div class="left_nav_btn"> <button onclick="onClickTNav();"> <i class="fa fa-bars" aria-hidden="true"></i> </button></div><div class="navbar-header"> <a class="navbar-brand" href="https://w3codeworld.com/"> <img src="https://w3codeworld.com/assets/images/logo-sm.png" alt="w3codeworld logo" style="width: 117px;height: 34px;"> </a></div><div id="navbar" class="collapse navbar-collapse navbar-arrow"><ul class="nav navbar-nav navbar-right" id="responsive-menu"><li> <a href="#">Tutorials<i class="arrow-indicator fa fa-angle-down"></i></a><ul style="display: none;">  <li> <a href="https://w3codeworld.com/php">PHP</a></li> <li> <a href="https://w3codeworld.com/codeigniter">Codeigniter</a></li>  </ul></li><li> <a href="#">Articles<i class="arrow-indicator fa fa-angle-down"></i></a><ul style="display: none;"><li> <a href="https://w3codeworld.com/articles">All Articles</a></li>  <li> <a href="https://w3codeworld.com/articles/tagged/php">PHP</a></li> <li> <a href="https://w3codeworld.com/articles/tagged/c-programming">C</a></li> <li> <a href="https://w3codeworld.com/articles/tagged/cplusplus">C++</a></li> <li> <a href="https://w3codeworld.com/articles/tagged/java">Java</a></li> <li> <a href="https://w3codeworld.com/articles/tagged/python">Python3</a></li> <li> <a href="https://w3codeworld.com/articles/tagged/javascript">JavaScript</a></li> <li> <a href="https://w3codeworld.com/articles/tagged/csharp">C#</a></li> <li> <a href="https://w3codeworld.com/articles/tagged/go-programming">GO</a></li> <li> <a href="https://w3codeworld.com/articles/tagged/rust-programming">Rust</a></li> <li> <a href="https://w3codeworld.com/articles/tagged/swift-programming">Swift</a></li> <li> <a href="https://w3codeworld.com/articles/tagged/kotlin">Kotlin</a></li> <li> <a href="https://w3codeworld.com/articles/tagged/ruby-programming">Ruby</a></li> <li> <a href="https://w3codeworld.com/articles/tagged/r-programming">R</a></li> <li> <a href="https://w3codeworld.com/articles/tagged/scala">Scala</a></li> <li> <a href="https://w3codeworld.com/articles/tagged/objective-c">Objective-C</a></li>  </ul></li></ul></div><div class="nS"></div></div><div id="slicknav-mobile"></div> </nav> </header><div class="main-wrapper scrollspy-container"><div class=breadcrumb-wrapper><div class=container><div class=row><div class=col-xs-12><ol class=breadcrumb><li><a href="https://w3codeworld.com/">Home</a><li><a href="https://w3codeworld.com/articles">Articles</a><li class=active>Write A Program For Strassens Matrix Multiplication In C++</ol></div></div></div></div><div class=equal-content-sidebar-wrapper><div class="equal-content-sidebar-by-gridLex right-sidebar"><div class=container><div class=row><div class="col-xs-12 ar_left col-md-2" id=artL style="padding:0 10px 0 5px"><aside class=sidebar-wrapper><div class="sBmW sidebar-menu-wrapper"style="background:0 0;box-shadow:none"><!--<ul class=sidebar-menu><li><a href="https://w3codeworld.com/articles/tagged/php">PHP</a></li><li><a href="https://w3codeworld.com/articles/tagged/c-programming">C</a></li><li><a href="https://w3codeworld.com/articles/tagged/cplusplus">C++</a></li><li><a href="https://w3codeworld.com/articles/tagged/java">Java</a></li><li><a href="https://w3codeworld.com/articles/tagged/python">Python3</a></li><li><a href="https://w3codeworld.com/articles/tagged/javascript">JavaScript</a></li><li><a href="https://w3codeworld.com/articles/tagged/csharp">C#</a></li><li><a href="https://w3codeworld.com/articles/tagged/go-programming">GO</a></li><li><a href="https://w3codeworld.com/articles/tagged/rust-programming">Rust</a></li><li><a href="https://w3codeworld.com/articles/tagged/swift-programming">Swift</a></li><li><a href="https://w3codeworld.com/articles/tagged/kotlin">Kotlin</a></li><li><a href="https://w3codeworld.com/articles/tagged/ruby-programming">Ruby</a></li><li><a href="https://w3codeworld.com/articles/tagged/r-programming">R</a></li><li><a href="https://w3codeworld.com/articles/tagged/scala">Scala</a></li><li><a href="https://w3codeworld.com/articles/tagged/objective-c">Objective-C</a></li></ul>--><div class="clearfix sidebar-module" style="margin-top: -23px;"><div class="ads_left scrollspy-sidebar"><div class="ads_right_nav scrollspy-sidenav"style=border:0><div class=ads_left><div class=adTtl>ADVERTISEMENTS</div><ins class=adsbygoogle data-ad-client=ca-pub-2906669545650611 data-ad-slot=6615782532 style=display:inline-block;width:180px;height:640px data-ad-format=auto></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div></div></div></div><div class=clear></div></div></aside></div><div class="col-xs-12 col-md-7 col-sm-8 col-xxl-8 dt_p_15" id=artM><div class=content-wrapper><div class=blog-wrapper><div class="blog-item blog-single"><div class=blog-content><h1>Write A Program For Strassens Matrix Multiplication In C++</h1><ul class=blog-meta><li><time datetime="2025-12-01 16:57:56"title="2025-12-01 16:57:56">Last Updated :1 Dec, 2025</time></li></ul><div class="ads_top adt_rv"><div class=adTtl>ADVERTISEMENTS</div><ins class="adsbygoogle adt_st hD1"data-ad-client=ca-pub-2906669545650611 data-ad-slot=9597169090 style=display:inline-block data-ad-format=auto></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div><div class=blog-entry><div><p>Strassen&#x27;s matrix multiplication is an efficient divide-and-conquer algorithm for multiplying matrices, offering a better time complexity than the standard approach for large matrices. In this article, you will learn how to implement Strassen&#x27;s algorithm in C++, comparing it with the traditional method and understanding its underlying principles.</p>
+
+<h2>Problem Statement</h2>
+
+<p>Matrix multiplication is a fundamental operation in linear algebra, with wide applications in computer graphics, scientific computing, and data analysis. Given two matrices, A (of size $m \times n$) and B (of size $n \times p$), their product C (of size $m \times p$) is defined as:
+$C_{ij} = \sum_{k=1}^{n} A_{ik} B_{kj}$</p>
+
+<p>The traditional (naive) algorithm computes each element of C by iterating through rows, columns, and intermediate products, resulting in a time complexity of $O(n^3)$ for two square matrices of size $n \times n$. For very large matrices, this cubic complexity can lead to significant computational overhead.</p>
+
+<h2>Example</h2>
+
+<p>Consider two $2 \times 2$ matrices, A and B:</p>
+
+<p>$A = \begin{pmatrix} 1 &amp; 2 \\ 3 &amp; 4 \end{pmatrix}$</p>
+
+<p>$B = \begin{pmatrix} 5 &amp; 6 \\ 7 &amp; 8 \end{pmatrix}$</p>
+
+<p>Using the standard matrix multiplication method, their product C would be:</p>
+
+<p>$C_{11} = (1 \times 5) + (2 \times 7) = 5 + 14 = 19$
+$C_{12} = (1 \times 6) + (2 \times 8) = 6 + 16 = 22$
+$C_{21} = (3 \times 5) + (4 \times 7) = 15 + 28 = 43$
+$C_{22} = (3 \times 6) + (4 \times 8) = 18 + 32 = 50$</p>
+
+<p>The resulting matrix C is:</p>
+
+<p>$C = \begin{pmatrix} 19 &amp; 22 \\ 43 &amp; 50 \end{pmatrix}$</p>
+
+<h2>Background &amp; Knowledge Prerequisites</h2>
+
+<p>To understand and implement Strassen&#x27;s algorithm, you should be familiar with:
+<ul><li>  <strong>C++ Basics:</strong> Fundamental syntax, data types, functions, and control structures.</li><li>  <strong>Dynamic Memory Allocation:</strong> Understanding how to use <code>std::vector</code> for dynamic arrays or raw pointers for matrices.</li><li>  <strong>Recursion:</strong> Strassen&#x27;s algorithm is inherently recursive, breaking down problems into smaller subproblems.</li><li>  <strong>Basic Matrix Operations:</strong> Addition, subtraction, and partitioning of matrices.</li><li>  <strong>Divide and Conquer Paradigm:</strong> The strategy of breaking a problem into subproblems, solving them independently, and combining their results.</li></ul></p>
+
+<h2>Use Cases or Case Studies</h2>
+
+<p>Matrix multiplication is a foundational operation with diverse applications:
+<ul><li>  <strong>Computer Graphics:</strong> Used extensively for transformations (scaling, rotation, translation) of 3D objects.</li><li>  <strong>Machine Learning:</strong> Central to training neural networks, support vector machines, and other models, especially in deep learning architectures.</li><li>  <strong>Scientific Computing:</strong> Essential in simulations, numerical analysis (e.g., solving systems of linear equations, finite element methods), and quantum mechanics.</li><li>  <strong>Image Processing:</strong> Applied in filters, transformations, and compression algorithms for images and videos.</li><li>  <strong>Optimization Problems:</strong> Used in algorithms like the Simplex method and various graph algorithms.</li></ul></p>
+
+<h2>Solution Approaches</h2>
+
+<p>We will explore two approaches: the naive matrix multiplication and Strassen&#x27;s algorithm.</p>
+
+<h3>Approach 1: Naive Matrix Multiplication</h3>
+
+<p>This is the standard approach, directly implementing the mathematical definition of matrix multiplication.
+<ul><li>  <strong>One-line summary:</strong> Iterates through rows, columns, and intermediate sums to compute each element of the product matrix.</li></ul></p>
+
+<pre><code class="language-cpp hljs">// Naive Matrix Multiplication
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+// Helper function to print a matrix
+void printMatrix(const std::vector&lt;std::vector&lt;int&gt;&gt;&amp; matrix) {
+    // Step 1: Iterate through each row of the matrix.
+    for (const auto&amp; row : matrix) {
+        // Step 2: Iterate through each element in the current row.
+        for (int val : row) {
+            // Step 3: Print the element followed by a space.
+            std::cout &lt;&lt; val &lt;&lt; &quot; &quot;;
+        }
+        // Step 4: Move to the next line after printing all elements in a row.
+        std::cout &lt;&lt; std::endl;
+    }
+}
+
+// Function to perform naive matrix multiplication
+std::vector&lt;std::vector&lt;int&gt;&gt; multiplyNaive(const std::vector&lt;std::vector&lt;int&gt;&gt;&amp; A,
+                                           const std::vector&lt;std::vector&lt;int&gt;&gt;&amp; B) {
+    int n = A.size(); // Assuming square matrices of size n x n
+    
+    // Step 1: Initialize the result matrix C with dimensions n x n, filled with zeros.
+    std::vector&lt;std::vector&lt;int&gt;&gt; C(n, std::vector&lt;int&gt;(n, 0));
+
+    // Step 2: Iterate through rows of matrix A.
+    for (int i = 0; i &lt; n; ++i) {
+        // Step 3: Iterate through columns of matrix B.
+        for (int j = 0; j &lt; n; ++j) {
+            // Step 4: Iterate through elements for the sum of products.
+            for (int k = 0; k &lt; n; ++k) {
+                // Step 5: Accumulate the product A[i][k] * B[k][j] into C[i][j].
+                C[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+    // Step 6: Return the resulting product matrix C.
+    return C;
+}
+
+int main() {
+    // Step 1: Define matrices A and B (2x2 example).
+    std::vector&lt;std::vector&lt;int&gt;&gt; A = {{1, 2}, {3, 4}};
+    std::vector&lt;std::vector&lt;int&gt;&gt; B = {{5, 6}, {7, 8}};
+
+    int n = A.size();
+    if (n == 0 || A[0].size() != n || B.size() != n || B[0].size() != n) {
+        std::cout &lt;&lt; &quot;Invalid matrix dimensions for square matrices.&quot; &lt;&lt; std::endl;
+        return 1;
+    }
+
+    // Step 2: Print original matrices for clarity.
+    std::cout &lt;&lt; &quot;Matrix A:&quot; &lt;&lt; std::endl;
+    printMatrix(A);
+    std::cout &lt;&lt; &quot;\\nMatrix B:&quot; &lt;&lt; std::endl;
+    printMatrix(B);
+
+    // Step 3: Perform naive matrix multiplication.
+    std::vector&lt;std::vector&lt;int&gt;&gt; C = multiplyNaive(A, B);
+
+    // Step 4: Print the result matrix.
+    std::cout &lt;&lt; &quot;\\nResult of Naive Multiplication (C = A * B):&quot; &lt;&lt; std::endl;
+    printMatrix(C);
+
+    return 0;
+}</code></pre><p><a class="execute" href="https://w3codeworld.com/ide/cpp-online-compiler?example=naive-matrix-multiplication-in-c@1284" target="_blank">Run</a></p>
+<ul><li>  <strong>Sample Output:</strong></li></ul>
+
+<pre><code>Matrix A:
+1 2 
+3 4 
+
+Matrix B:
+5 6 
+7 8 
+
+Result of Naive Multiplication (C = A * B):
+19 22 
+43 50</code></pre><p></p>
+<ul><li>  <strong>Stepwise Explanation:</strong></li></ul><ol><li>The <code>printMatrix</code> function simply iterates through rows and columns to display the matrix elements.</li>
+<li><code>multiplyNaive</code> initializes a result matrix <code>C</code> of the same dimensions as <code>A</code> and <code>B</code>, filled with zeros.</li>
+<li>It then uses three nested loops:<ul><li>  The outer loop (<code>i</code>) iterates through the rows of matrix <code>A</code>.</li></ol><li>  The middle loop (<code>j</code>) iterates through the columns of matrix <code>B</code>.</li><li>  The inner loop (<code>k</code>) calculates the sum of products for the element <code>C[i][j]</code>.</li></ul></li><ol><li>Each <code>C[i][j]</code> element is computed by summing <code>A[i][k] * B[k][j]</code> for all <code>k</code> from <code>0</code> to <code>n-1</code>.</li>
+<li>Finally, the computed matrix <code>C</code> is returned.</li></ol>
+
+<h3>Approach 2: Strassen&#x27;s Matrix Multiplication</h3>
+
+<p>Strassen&#x27;s algorithm is a recursive, divide-and-conquer approach that reduces the number of multiplications required from 8 (in the standard method for 2x2 blocks) to 7. This seemingly small reduction leads to a better overall time complexity of $O(n^{\log_2 7})$ which is approximately $O(n^{2.807})$.
+<ul><li>  <strong>One-line summary:</strong> A recursive, divide-and-conquer algorithm that multiplies matrices by cleverly rearranging sub-matrix additions and subtractions to reduce the total number of recursive multiplications from eight to seven.</li></ul></p>
+
+<p><strong>Key Idea: Strassen&#x27;s 7 Products for $2 \times 2$ Matrices</strong></p>
+
+<p>To multiply two $2 \times 2$ matrices:
+$A = \begin{pmatrix} A_{11} &amp; A_{12} \\ A_{21} &amp; A_{22} \end{pmatrix}$
+$B = \begin{pmatrix} B_{11} &amp; B_{12} \\ B_{21} &amp; B_{22} \end{pmatrix}$</p>
+
+<p>The product $C = A \times B$ would normally require 8 multiplications and 4 additions to get its sub-matrices:
+$C_{11} = A_{11}B_{11} + A_{12}B_{21}$
+$C_{12} = A_{11}B_{12} + A_{12}B_{22}$
+$C_{21} = A_{21}B_{11} + A_{22}B_{21}$
+$C_{22} = A_{21}B_{12} + A_{22}B_{22}$</p>
+
+<p>Strassen&#x27;s algorithm computes the 7 products (M1 to M7) as follows:</p>
+
+<p>$M_1 = (A_{11} + A_{22}) (B_{11} + B_{22})$
+$M_2 = (A_{21} + A_{22}) B_{11}$
+$M_3 = A_{11} (B_{12} - B_{22})$
+$M_4 = A_{22} (B_{21} - B_{11})$
+$M_5 = (A_{11} + A_{12}) B_{22}$
+$M_6 = (A_{21} - A_{11}) (B_{11} + B_{12})$
+$M_7 = (A_{12} - A_{22}) (B_{21} + B_{22})$</p>
+
+<p>Then, the sub-matrices of C are calculated using these 7 products with 18 additions/subtractions:</p>
+
+<p>$C_{11} = M_1 + M_4 - M_5 + M_7$
+$C_{12} = M_3 + M_5$
+$C_{21} = M_2 + M_4$
+$C_{22} = M_1 - M_2 + M_3 + M_6$</p>
+
+<p>For general $n \times n$ matrices, this process is applied recursively by dividing the matrices into $n/2 \times n/2$ sub-matrices until the base case (e.g., $1 \times 1$ matrices) is reached. If matrix dimensions are not powers of 2, they must be padded with zeros to the next power of 2.</p>
+
+<pre><code class="language-cpp hljs">// Strassen&#x27;s Matrix Multiplication
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;cmath&gt; // For std::pow, std::ceil
+#include &lt;algorithm&gt; // For std::max
+
+// Helper function to print a matrix
+void printMatrix(const std::vector&lt;std::vector&lt;int&gt;&gt;&amp; matrix, int n) {
+    // Step 1: Iterate through each row up to the actual size &#x27;n&#x27;.
+    for (int i = 0; i &lt; n; ++i) {
+        // Step 2: Iterate through each element in the current row up to &#x27;n&#x27;.
+        for (int j = 0; j &lt; n; ++j) {
+            // Step 3: Print the element followed by a space.
+            std::cout &lt;&lt; matrix[i][j] &lt;&lt; &quot; &quot;;
+        }
+        // Step 4: Move to the next line after printing all elements in a row.
+        std::cout &lt;&lt; std::endl;
+    }
+}
+
+// Helper function to add two matrices
+std::vector&lt;std::vector&lt;int&gt;&gt; add(const std::vector&lt;std::vector&lt;int&gt;&gt;&amp; A,
+                                   const std::vector&lt;std::vector&lt;int&gt;&gt;&amp; B, int size) {
+    // Step 1: Initialize result matrix C with dimensions &#x27;size&#x27; x &#x27;size&#x27;.
+    std::vector&lt;std::vector&lt;int&gt;&gt; C(size, std::vector&lt;int&gt;(size));
+    // Step 2: Iterate through rows and columns.
+    for (int i = 0; i &lt; size; ++i) {
+        for (int j = 0; j &lt; size; ++j) {
+            // Step 3: Perform element-wise addition.
+            C[i][j] = A[i][j] + B[i][j];
+        }
+    }
+    // Step 4: Return the sum matrix.
+    return C;
+}
+
+// Helper function to subtract two matrices
+std::vector&lt;std::vector&lt;int&gt;&gt; subtract(const std::vector&lt;std::vector&lt;int&gt;&gt;&amp; A,
+                                       const std::vector&lt;std::vector&lt;int&gt;&gt;&amp; B, int size) {
+    // Step 1: Initialize result matrix C with dimensions &#x27;size&#x27; x &#x27;size&#x27;.
+    std::vector&lt;std::vector&lt;int&gt;&gt; C(size, std::vector&lt;int&gt;(size));
+    // Step 2: Iterate through rows and columns.
+    for (int i = 0; i &lt; size; ++i) {
+        for (int j = 0; j &lt; size; ++j) {
+            // Step 3: Perform element-wise subtraction.
+            C[i][j] = A[i][j] - B[i][j];
+        }
+    }
+    // Step 4: Return the difference matrix.
+    return C;
+}
+
+// Helper function to split a matrix into four sub-matrices
+void split(const std::vector&lt;std::vector&lt;int&gt;&gt;&amp; P,
+           std::vector&lt;std::vector&lt;int&gt;&gt;&amp; P11, std::vector&lt;std::vector&lt;int&gt;&gt;&amp; P12,
+           std::vector&lt;std::vector&lt;int&gt;&gt;&amp; P21, std::vector&lt;std::vector&lt;int&gt;&gt;&amp; P22, int size) {
+    int halfSize = size / 2;
+    // Step 1: Iterate through the rows of the parent matrix P.
+    for (int i = 0; i &lt; halfSize; ++i) {
+        // Step 2: Iterate through the columns of the parent matrix P.
+        for (int j = 0; j &lt; halfSize; ++j) {
+            // Step 3: Assign elements to the top-left sub-matrix P11.
+            P11[i][j] = P[i][j];
+            // Step 4: Assign elements to the top-right sub-matrix P12.
+            P12[i][j] = P[i][j + halfSize];
+            // Step 5: Assign elements to the bottom-left sub-matrix P21.
+            P21[i][j] = P[i + halfSize][j];
+            // Step 6: Assign elements to the bottom-right sub-matrix P22.
+            P22[i][j] = P[i + halfSize][j + halfSize];
+        }
+    }
+}
+
+// Helper function to join four sub-matrices into a single matrix
+void join(const std::vector&lt;std::vector&lt;int&gt;&gt;&amp; C11, const std::vector&lt;std::vector&lt;int&gt;&gt;&amp; C12,
+          const std::vector&lt;std::vector&lt;int&gt;&gt;&amp; C21, const std::vector&lt;std::vector&lt;int&gt;&gt;&amp; C22,
+          std::vector&lt;std::vector&lt;int&gt;&gt;&amp; C, int size) {
+    int halfSize = size / 2;
+    // Step 1: Iterate through the rows of the result matrix C.
+    for (int i = 0; i &lt; halfSize; ++i) {
+        // Step 2: Iterate through the columns of the result matrix C.
+        for (int j = 0; j &lt; halfSize; ++j) {
+            // Step 3: Assign C11 elements to the top-left quadrant of C.
+            C[i][j] = C11[i][j];
+            // Step 4: Assign C12 elements to the top-right quadrant of C.
+            C[i][j + halfSize] = C12[i][j];
+            // Step 5: Assign C21 elements to the bottom-left quadrant of C.
+            C[i + halfSize][j] = C21[i][j];
+            // Step 6: Assign C22 elements to the bottom-right quadrant of C.
+            C[i + halfSize][j + halfSize] = C22[i][j];
+        }
+    }
+}
+
+// Recursive Strassen&#x27;s Matrix Multiplication
+std::vector&lt;std::vector&lt;int&gt;&gt; strassen_multiply(const std::vector&lt;std::vector&lt;int&gt;&gt;&amp; A,
+                                                 const std::vector&lt;std::vector&lt;int&gt;&gt;&amp; B, int size) {
+    // Step 1: Base case for recursion: if matrix size is 1x1, perform direct multiplication.
+    if (size == 1) {
+        std::vector&lt;std::vector&lt;int&gt;&gt; C(1, std::vector&lt;int&gt;(1));
+        C[0][0] = A[0][0] * B[0][0];
+        return C;
+    }
+
+    // Step 2: Calculate half the current matrix size.
+    int halfSize = size / 2;
+
+    // Step 3: Initialize sub-matrices for A and B.
+    std::vector&lt;std::vector&lt;int&gt;&gt; A11(halfSize, std::vector&lt;int&gt;(halfSize));
+    std::vector&lt;std::vector&lt;int&gt;&gt; A12(halfSize, std::vector&lt;int&gt;(halfSize));
+    std::vector&lt;std::vector&lt;int&gt;&gt; A21(halfSize, std::vector&lt;int&gt;(halfSize));
+    std::vector&lt;std::vector&lt;int&gt;&gt; A22(halfSize, std::vector&lt;int&gt;(halfSize));
+
+    std::vector&lt;std::vector&lt;int&gt;&gt; B11(halfSize, std::vector&lt;int&gt;(halfSize));
+    std::vector&lt;std::vector&lt;int&gt;&gt; B12(halfSize, std::vector&lt;int&gt;(halfSize));
+    std::vector&lt;std::vector&lt;int&gt;&gt; B21(halfSize, std::vector&lt;int&gt;(halfSize));
+    std::vector&lt;std::vector&lt;int&gt;&gt; B22(halfSize, std::vector&lt;int&gt;(halfSize));
+
+    // Step 4: Split A and B into their respective sub-matrices.
+    split(A, A11, A12, A21, A22, size);
+    split(B, B11, B12, B21, B22, size);
+
+    // Step 5: Compute the 7 products (M1 to M7) recursively.
+    // M1 = (A11 + A22) * (B11 + B22)
+    std::vector&lt;std::vector&lt;int&gt;&gt; M1 = strassen_multiply(add(A11, A22, halfSize), add(B11, B22, halfSize), halfSize);
+    // M2 = (A21 + A22) * B11
+    std::vector&lt;std::vector&lt;int&gt;&gt; M2 = strassen_multiply(add(A21, A22, halfSize), B11, halfSize);
+    // M3 = A11 * (B12 - B22)
+    std::vector&lt;std::vector&lt;int&gt;&gt; M3 = strassen_multiply(A11, subtract(B12, B22, halfSize), halfSize);
+    // M4 = A22 * (B21 - B11)
+    std::vector&lt;std::vector&lt;int&gt;&gt; M4 = strassen_multiply(A22, subtract(B21, B11, halfSize), halfSize);
+    // M5 = (A11 + A12) * B22
+    std::vector&lt;std::vector&lt;int&gt;&gt; M5 = strassen_multiply(add(A11, A12, halfSize), B22, halfSize);
+    // M6 = (A21 - A11) * (B11 + B12)
+    std::vector&lt;std::vector&lt;int&gt;&gt; M6 = strassen_multiply(subtract(A21, A11, halfSize), add(B11, B12, halfSize), halfSize);
+    // M7 = (A12 - A22) * (B21 + B22)
+    std::vector&lt;std::vector&lt;int&gt;&gt; M7 = strassen_multiply(subtract(A12, A22, halfSize), add(B21, B22, halfSize), halfSize);
+
+    // Step 6: Compute the four sub-matrices of the result C (C11, C12, C21, C22).
+    // C11 = M1 + M4 - M5 + M7
+    std::vector&lt;std::vector&lt;int&gt;&gt; C11 = add(subtract(add(M1, M4, halfSize), M5, halfSize), M7, halfSize);
+    // C12 = M3 + M5
+    std::vector&lt;std::vector&lt;int&gt;&gt; C12 = add(M3, M5, halfSize);
+    // C21 = M2 + M4
+    std::vector&lt;std::vector&lt;int&gt;&gt; C21 = add(M2, M4, halfSize);
+    // C22 = M1 - M2 + M3 + M6
+    std::vector&lt;std::vector&lt;int&gt;&gt; C22 = add(subtract(add(M1, M3, halfSize), M2, halfSize), M6, halfSize);
+
+    // Step 7: Initialize the final result matrix C.
+    std::vector&lt;std::vector&lt;int&gt;&gt; C(size, std::vector&lt;int&gt;(size));
+    // Step 8: Join the four computed sub-matrices into C.
+    join(C11, C12, C21, C22, C, size);
+
+    // Step 9: Return the final product matrix C.
+    return C;
+}
+
+// Function to get the next power of 2 for padding
+int getNextPowerOf2(int n) {
+    if (n == 0) return 1;
+    if ((n &amp; (n - 1)) == 0) return n; // Already a power of 2
+    return std::pow(2, std::ceil(std::log2(n)));
+}
+
+// Wrapper function to handle padding for Strassen&#x27;s algorithm
+std::vector&lt;std::vector&lt;int&gt;&gt; strassen_wrapper(const std::vector&lt;std::vector&lt;int&gt;&gt;&amp; A,
+                                                const std::vector&lt;std::vector&lt;int&gt;&gt;&amp; B,
+                                                int original_n) {
+    int new_n = getNextPowerOf2(original_n);
+
+    // Step 1: Create padded matrices Ap and Bp.
+    std::vector&lt;std::vector&lt;int&gt;&gt; Ap(new_n, std::vector&lt;int&gt;(new_n, 0));
+    std::vector&lt;std::vector&lt;int&gt;&gt; Bp(new_n, std::vector&lt;int&gt;(new_n, 0));
+
+    // Step 2: Copy original matrices into padded matrices.
+    for (int i = 0; i &lt; original_n; ++i) {
+        for (int j = 0; j &lt; original_n; ++j) {
+            Ap[i][j] = A[i][j];
+            Bp[i][j] = B[i][j];
+        }
+    }
+
+    // Step 3: Perform Strassen&#x27;s multiplication on padded matrices.
+    std::vector&lt;std::vector&lt;int&gt;&gt; C_padded = strassen_multiply(Ap, Bp, new_n);
+
+    // Step 4: Extract the result of the original dimensions.
+    std::vector&lt;std::vector&lt;int&gt;&gt; C_original(original_n, std::vector&lt;int&gt;(original_n));
+    for (int i = 0; i &lt; original_n; ++i) {
+        for (int j = 0; j &lt; original_n; ++j) {
+            C_original[i][j] = C_padded[i][j];
+        }
+    }
+
+    // Step 5: Return the result for the original matrix size.
+    return C_original;
+}
+
+int main() {
+    // Step 1: Define matrices A and B (2x2 example).
+    std::vector&lt;std::vector&lt;int&gt;&gt; A = {{1, 2}, {3, 4}};
+    std::vector&lt;std::vector&lt;int&gt;&gt; B = {{5, 6}, {7, 8}};
+    int n = A.size();
+
+    if (n == 0 || A[0].size() != n || B.size() != n || B[0].size() != n) {
+        std::cout &lt;&lt; &quot;Invalid matrix dimensions for square matrices.&quot; &lt;&lt; std::endl;
+        return 1;
+    }
+
+    // Step 2: Print original matrices.
+    std::cout &lt;&lt; &quot;Matrix A:&quot; &lt;&lt; std::endl;
+    printMatrix(A, n);
+    std::cout &lt;&lt; &quot;\\nMatrix B:&quot; &lt;&lt; std::endl;
+    printMatrix(B, n);
+
+    // Step 3: Perform Strassen&#x27;s multiplication using the wrapper to handle padding.
+    std::vector&lt;std::vector&lt;int&gt;&gt; C = strassen_wrapper(A, B, n);
+
+    // Step 4: Print the result matrix.
+    std::cout &lt;&lt; &quot;\\nResult of Strassen&#x27;s Multiplication (C = A * B):&quot; &lt;&lt; std::endl;
+    printMatrix(C, n);
+
+    // Example with 3x3 matrix (will be padded to 4x4)
+    std::cout &lt;&lt; &quot;\\n--- 3x3 Matrix Example (padded to 4x4 for Strassen) ---&quot; &lt;&lt; std::endl;
+    std::vector&lt;std::vector&lt;int&gt;&gt; A_3x3 = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}
+    };
+    std::vector&lt;std::vector&lt;int&gt;&gt; B_3x3 = {
+        {9, 8, 7},
+        {6, 5, 4},
+        {3, 2, 1}
+    };
+    int n_3x3 = A_3x3.size();
+
+    std::cout &lt;&lt; &quot;Matrix A (3x3):&quot; &lt;&lt; std::endl;
+    printMatrix(A_3x3, n_3x3);
+    std::cout &lt;&lt; &quot;\\nMatrix B (3x3):&quot; &lt;&lt; std::endl;
+    printMatrix(B_3x3, n_3x3);
+
+    std::vector&lt;std::vector&lt;int&gt;&gt; C_3x3_strassen = strassen_wrapper(A_3x3, B_3x3, n_3x3);
+    std::cout &lt;&lt; &quot;\\nResult of Strassen&#x27;s Multiplication (3x3):&quot; &lt;&lt; std::endl;
+    printMatrix(C_3x3_strassen, n_3x3);
+
+    // Verify with naive for 3x3
+    std::vector&lt;std::vector&lt;int&gt;&gt; C_3x3_naive = multiplyNaive(A_3x3, B_3x3); // Needs multiplyNaive to handle non-power of 2, which it does.
+    std::cout &lt;&lt; &quot;\\nResult of Naive Multiplication (3x3 for comparison):&quot; &lt;&lt; std::endl;
+    printMatrix(C_3x3_naive, n_3x3);
+
+
+    return 0;
+}</code></pre><p><a class="execute" href="https://w3codeworld.com/ide/cpp-online-compiler?example=strassen-x27-s-matrix-multiplication-in-c@1285" target="_blank">Run</a></p>
+<ul><li>  <strong>Sample Output:</strong></li></ul>
+
+<pre><code>Matrix A:
+1 2 
+3 4 
+
+Matrix B:
+5 6 
+7 8 
+
+Result of Strassen&#x27;s Multiplication (C = A * B):
+19 22 
+43 50 
+
+--- 3x3 Matrix Example (padded to 4x4 for Strassen) ---
+Matrix A (3x3):
+1 2 3 
+4 5 6 
+7 8 9 
+
+Matrix B (3x3):
+9 8 7 
+6 5 4 
+3 2 1 
+
+Result of Strassen&#x27;s Multiplication (3x3):
+30 24 18 
+84 69 54 
+138 114 90 
+
+Result of Naive Multiplication (3x3 for comparison):
+30 24 18 
+84 69 54 
+138 114 90</code></pre><p></p>
+<ul><li>  <strong>Stepwise Explanation:</strong></li></ul><ol><li><strong>Helper Functions:</strong><ul><li>  <code>printMatrix</code>: Utility to display matrix contents.</li></ol><li>  <code>add</code>, <code>subtract</code>: Perform element-wise matrix addition and subtraction.</li><li>  <code>split</code>: Divides a given matrix into four equally sized sub-matrices ($A_{11}, A_{12}, A_{21}, A_{22}$).</li><li>  <code>join</code>: Combines four sub-matrices back into a single larger matrix.</li><li>  <code>getNextPowerOf2</code>: Calculates the smallest power of 2 greater than or equal to <code>n</code>, used for padding.</li><li>  <code>strassen_wrapper</code>: Handles padding of matrices if their dimensions are not powers of 2. It pads with zeros, calls <code>strassen_multiply</code>, and then extracts the relevant part of the result.</li></ul></li><ol><li><strong><code>strassen_multiply</code> (Recursive Function):</strong><ul><li>  <strong>Base Case:</strong> If the <code>size</code> of the matrix is 1 (a $1 \times 1$ matrix), it performs a direct multiplication and returns the result. This is the stopping condition for the recursion.</li></ol><li>  <strong>Divide:</strong> The current matrices <code>A</code> and <code>B</code> are split into four <code>halfSize x halfSize</code> sub-matrices each using the <code>split</code> helper function.</li><li>  <strong>Conquer (Recursive Calls):</strong> It recursively calls <code>strassen_multiply</code> seven times to compute the 7 products ($M_1$ through $M_7$). Each call involves matrix additions or subtractions of the sub-matrices, followed by a recursive multiplication.</li><li>  <strong>Combine:</strong> The results of $M_1$ to $M_7$ are then combined using matrix additions and subtractions to form the four sub-matrices ($C_{11}, C_{12}, C_{21}, C_{22}$) of the final product matrix <code>C</code>.</li><li>  <strong>Join:</strong> These four sub-matrices are then joined together to form the complete <code>C</code> matrix, which is returned.</li></ul></li><ol><li><strong><code>main</code> Function:</strong><ul><li>  Sets up two $2 \times 2$ example matrices <code>A</code> and <code>B</code>.</li></ol><li>  Calls <code>strassen_wrapper</code> to perform the multiplication, ensuring correct padding if needed.</li><li>  Prints the original matrices and the result of Strassen&#x27;s multiplication.</li><li>  Includes an additional $3 \times 3$ example to demonstrate padding and verification with the naive method.</li></ul></li>
+
+<h2>Conclusion</h2>
+
+<p>Strassen&#x27;s algorithm provides a theoretically faster approach to matrix multiplication compared to the naive $O(n^3)$ algorithm, achieving $O(n^{\log_2 7})$ complexity. While its asymptotic advantage is significant for very large matrices, the overhead of matrix splitting, joining, and increased number of additions/subtractions can make it slower for smaller matrices due to constant factors. Furthermore, implementing Strassen&#x27;s algorithm requires careful handling of matrix dimensions (often padding to powers of 2) and memory management for recursive calls. Despite these practical considerations, it remains an important algorithm demonstrating how clever algebraic manipulations can improve computational efficiency.</p>
+
+<h2>Summary</h2>
+<ul><li>  <strong>Problem:</strong> Naive matrix multiplication has an $O(n^3)$ time complexity, which is inefficient for large matrices.</li><li>  <strong>Strassen&#x27;s Solution:</strong> A divide-and-conquer algorithm that reduces the number of multiplications from 8 to 7 for $2 \times 2$ blocks, leading to an improved $O(n^{\log_2 7})$ time complexity.</li><li>  <strong>Key Idea:</strong> It cleverly rearranges matrix additions and subtractions to form intermediate products ($M_1$ to $M_7$) that are then combined to get the final result.</li><li>  <strong>Implementation:</strong> Requires recursive function calls, helper functions for matrix addition, subtraction, splitting, and joining.</li><li>  <strong>Padding:</strong> Matrices whose dimensions are not powers of 2 need to be padded with zeros to the next power of 2 to fit the recursive structure.</li><li>  <strong>Performance:</strong> Theoretically faster for large matrices, but practical overheads might make it slower than naive multiplication for small matrix sizes.</li></ul></div></div></div></div><div class=blog-extra><div class=row><div class="col-xs-12 col-md-12 col-sm-12 xs-mb"><ul class="mt-20-xs mt-5 pull-left-xs social-share-sm"><li class="the-label the-label2"><p><strong>Share on :</strong><li class=the-label><a href="https://www.facebook.com/sharer.php?display=page&u=https%3A%2F%2Fw3codeworld.com%2Farticle%2F726%2Fwrite-a-program-for-strassens-matrix-multiplication-in-cplusplus"class="e-share share-facebook"target=_blank><i class="fa fa-facebook"></i></a><li class=the-label><a href="https://twitter.com/share?url=https%3A%2F%2Fw3codeworld.com%2Farticle%2F726%2Fwrite-a-program-for-strassens-matrix-multiplication-in-cplusplus"class="e-share share-twitter"target=_blank><i class="fa fa-twitter"></i></a><li class=the-label><a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fw3codeworld.com%2Farticle%2F726%2Fwrite-a-program-for-strassens-matrix-multiplication-in-cplusplus"class="e-share share-linkedin"target=_blank><i class="fa fa-linkedin"></i></a></ul></div><div class=clear></div><div class="col-xs-12 col-md-12 col-sm-12 xs-mb fMd"><div class="row fMr1"id=fMr1><span class="col-12 fMt">Hope, This article was helpful?</span><div class=col-6><button class=fMr1btn id=fBtnY>Yes</button></div><div class=col-6><button class=fMr1btn id=fBtnN>No</button></div></div><div class="row fMr2"id=fMr2><div class=col-12 id=fY></div><div class="col-12 fN"id=fN><h3>Sorry about that</h3><label class=fMt>How can we improve it?</label><div id=outMsg></div><textarea class=form-control cols=60 id=fMsg placeholder="Enter your message..."required rows=5 spellcheck=false></textarea> <input id=rexcode required type=hidden value="726"> <button class="float-right sFbtn"id=sFbtn>Submit Feedback</button></div><div class=col-12 id=fNs><span class=fMt>Thank you for helping us improve this article.</span></div></div></div></div></div><div class="gad_rv ads_bottom blk_h2d1"><div class=adTtl>ADVERTISEMENTS</div><ins class="adsbygoogle gad_st hD2"data-ad-client=ca-pub-2906669545650611 data-ad-slot=9106214505 style=display:inline-block data-ad-format=auto></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div></div></div></div><div class="col-xs-12 ArRNav col-md-3 col-sm-4 col-xxl-2" id=artR><div class="clearfix sidebar-module r_target"><h6 class=sidebar-title>Recent Articles</h6><div class=other-chapter><ul class=other-chapter-list><li class=clearfix><a href="https://w3codeworld.com/article/1505/uppercase-lowercase-or-special-character-in-java-code"><div class=title>Uppercase Lowercase Or Special Character In Java Code</div></a></li><li class=clearfix><a href="https://w3codeworld.com/article/1504/how-to-write-a-java-program-to-find-the-sum-of-natural-numbers-using-recursion"><div class=title>How To Write A Java Program To Find The Sum Of Natural Numbers Using Recursion</div></a></li><li class=clearfix><a href="https://w3codeworld.com/article/1503/java-program-to-read-a-text-file-and-display-its-contents"><div class=title>Java Program To Read A Text File And Display Its Contents</div></a></li><li class=clearfix><a href="https://w3codeworld.com/article/1502/java-program-to-display-its-own-source-code-as-output"><div class=title>Java Program To Display Its Own Source Code As Output</div></a></li><li class=clearfix><a href="https://w3codeworld.com/article/1501/write-a-program-to-check-whether-a-character-is-a-vowel-or-consonant-in-java"><div class=title>Write A Program To Check Whether A Character Is A Vowel Or Consonant In Java</div></a></li><li class=clearfix><a href="https://w3codeworld.com/article/1500/java-program-to-convert-octal-number-to-decimal-and-vice-versa"><div class=title>Java Program To Convert Octal Number To Decimal And Vice Versa</div></a></li></ul></div></div><div class=clear></div><div class="clearfix sidebar-module"><div class="ads_right affix_r_ar" id=affix_r2><div class="ads_right_nav blk_v2d1 gad_rv"><div class=adTtl>ADVERTISEMENTS</div><ins class="adsbygoogle gad_st"data-ad-client=ca-pub-2906669545650611 data-ad-slot=5052437661 style=display:block;width:300px;height:600px></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div></div></div><div class=clear></div></div></div></div></div></div></div>
+<div class="footer-wrapper scrollspy-footer"> <div class="container" style="background-color: #f2f4fb;"><div class="row"><div class="col-sm-12 rAt"><h2 class="sidebar-title sT2">Related Articles</h2><hr><div class="category-item-wrapper icon-block item-border"><div class="row"> <div class="col-xs-12 col-md-6 col-lg-4 col-xxl-3"> <a href="https://w3codeworld.com/article/1058/c-program-of-simple-bubble-sort-implementation-using-array-ascending-order" title="C Program Of Simple Bubble Sort Implementation Using Array Ascending Order" class="category-item cT"><div class="content"><h2>C Program Of Simple Bubble Sort Implementation Using Array Ascending Order...</h2></div> </a></div> <div class="col-xs-12 col-md-6 col-lg-4 col-xxl-3"> <a href="https://w3codeworld.com/article/1057/c-program-for-insertion-sort-in-descending-order" title="C Program For Insertion Sort In Descending Order" class="category-item cT"><div class="content"><h2>C Program For Insertion Sort In Descending Order...</h2></div> </a></div> <div class="col-xs-12 col-md-6 col-lg-4 col-xxl-3"> <a href="https://w3codeworld.com/article/1056/c-program-for-selection-sort-algorithm-in-data-structure" title="C Program For Selection Sort Algorithm In Data Structure" class="category-item cT"><div class="content"><h2>C Program For Selection Sort Algorithm In Data Structure...</h2></div> </a></div> <div class="col-xs-12 col-md-6 col-lg-4 col-xxl-3"> <a href="https://w3codeworld.com/article/1055/c-program-to-implement-oddeven-sorting" title="C Program To Implement Oddeven Sorting" class="category-item cT"><div class="content"><h2>C Program To Implement Oddeven Sorting...</h2></div> </a></div> <div class="col-xs-12 col-md-6 col-lg-4 col-xxl-3"> <a href="https://w3codeworld.com/article/1054/c-program-for-selection-sort-in-descending-order" title="C Program For Selection Sort In Descending Order" class="category-item cT"><div class="content"><h2>C Program For Selection Sort In Descending Order...</h2></div> </a></div> <div class="col-xs-12 col-md-6 col-lg-4 col-xxl-3"> <a href="https://w3codeworld.com/article/1053/c-program-for-shell-sort-in-data-structure" title="C Program For Shell Sort In Data Structure" class="category-item cT"><div class="content"><h2>C Program For Shell Sort In Data Structure...</h2></div> </a></div> </div></div></div></div></div> <footer class="main-footer"><div class="container"><div class="row"><div class="col-md-5 p-20 fbox1"><div class="newsletter-footer"><form action="#" method="post" id="sB" class="row"><div class="col-xs-12 col-sm-12 col-md-8"><h3 class="text-white">Get the latest updates</h3><div class="form-group"> <input type="email" name="email" class="form-control" placeholder="Enter email address*"> <input type="submit" class="btn btn-submit" value="Subscribe"></div><div id="sMsg"></div></div></form></div><div class="social-footer clearfix"> <a href="https://www.facebook.com/w3codeworld" target="_blank" title="Facebook"> <i class="fa fa-facebook-official"></i> </a> <a href="https://twitter.com/w3codeworld" target="_blank" title="Twitter"> <i class="fa fa-twitter"></i> </a> <a href="https://www.youtube.com/channel/UC1lP73xjzTnhZstxKvQ93RA" target="_blank" title="Youtube"> <i class="fa fa-youtube"></i> </a></div></div><div class="col-md-7 p-20 fbox2"><div class="row"><div class="col-sm-12 col-md-4"><ul class="menu-footer"><li style="font-size: 18px;margin-bottom: 8px;">Top Tutorials</li>  <li> <a href="https://w3codeworld.com/php">PHP Tutorial</a></li> <li> <a href="https://w3codeworld.com/codeigniter">Codeigniter Tutorial</a></li>  </ul></div><div class="col-sm-12 col-md-4"><ul class="menu-footer"><li style="font-size: 18px;margin-bottom: 8px;">Top Articles</li>  <li> <a href="https://w3codeworld.com/articles/tagged/php">PHP Articles</a></li> <li> <a href="https://w3codeworld.com/articles/tagged/c-programming">C Articles</a></li> <li> <a href="https://w3codeworld.com/articles/tagged/cplusplus">C++ Articles</a></li> <li> <a href="https://w3codeworld.com/articles/tagged/java">Java Articles</a></li> <li> <a href="https://w3codeworld.com/articles/tagged/python">Python3 Articles</a></li> <li> <a href="https://w3codeworld.com/articles/tagged/javascript">JavaScript Articles</a></li> <li> <a href="https://w3codeworld.com/articles/tagged/csharp">C# Articles</a></li> <li> <a href="https://w3codeworld.com/articles/tagged/go-programming">GO Articles</a></li> <li> <a href="https://w3codeworld.com/articles/tagged/rust-programming">Rust Articles</a></li> <li> <a href="https://w3codeworld.com/articles/tagged/swift-programming">Swift Articles</a></li> <li> <a href="https://w3codeworld.com/articles/tagged/kotlin">Kotlin Articles</a></li> <li> <a href="https://w3codeworld.com/articles/tagged/ruby-programming">Ruby Articles</a></li> <li> <a href="https://w3codeworld.com/articles/tagged/r-programming">R Articles</a></li> <li> <a href="https://w3codeworld.com/articles/tagged/scala">Scala Articles</a></li> <li> <a href="https://w3codeworld.com/articles/tagged/objective-c">Objective-C Articles</a></li>  </ul></div><div class="col-sm-12 col-md-4"><ul class="menu-footer"><li style="font-size: 18px;margin-bottom: 8px;">Company</li><li><a href="https://w3codeworld.com/about-us">About Us</a></li><li><a href="https://w3codeworld.com/contact-us">Contact Us</a></li><li><a href="https://w3codeworld.com/terms-condition">Terms & Conditions</a></li><li><a href="https://w3codeworld.com/privacy-policy">Privacy Policy</a></li></ul></div></div></div></div></div> </footer> <footer class="secondary-footer"><div class="container"><div class="row"><div class="col-12"><p class="copy-right">&#169; Copyright 2020-2026. All rights reserved.</p></div></div></div> </footer></div></div><div class="foo_add" id="fPp"> <button class="cls_btn" onclick="clsPp();"> <tt style="font-family: sans-serif;">X</tt> </button><div class="ads_top btm_rv"><div class="adTtl bTAd">ADVERTISEMENTS</div> <ins class="adsbygoogle btm_st" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-2906669545650611" data-ad-slot="9597169090"></ins> <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script> </div></div><div id="back-to-top"> <a href="javascript:;"> <i class="fa fa-angle-up"></i> </a></div><div id="snackbar"> <span class="msg"></span></div><script type="text/javascript" src="https://w3codeworld.com/js/jquery-2.2.4.min.js"></script><script type="text/javascript">"use strict";let baseURL="https://w3codeworld.com/",cT1=baseURL+"plugins/highlight/styles/xcode.css",cT2=baseURL+"plugins/highlight/styles/codepen-embed.css",cTId="swap__1",lT="Light theme",dT="Dark theme",cgT="cg_light",cT2Cln=cT2;cCK("cThe")&&gCK("cThe")==cT2Cln&&([cT1,cT2]=[cT2,cT1]);let gF="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap&family=Mukta:wght@300;400;500",sW=window.innerWidth,artL=document.getElementById("artL"),artM=document.getElementById("artM"),artR=document.getElementById("artR"),affix_r2=document.getElementById("affix_r2"),mWd=(sW-553).toString()+"px";function sCK(t,e,s){var a=new Date;a.setTime(a.getTime()+24*s*60*60*1e3);var o="expires="+a.toGMTString();document.cookie=t+"="+e+";"+o+";path=/"}function gCK(t){for(var e=t+"=",s=decodeURIComponent(document.cookie).split(";"),a=0;a<s.length;a++){for(var o=s[a];" "==o.charAt(0);)o=o.substring(1);if(0==o.indexOf(e))return o.substring(e.length,o.length)}return""}function cCK(t){return""!=(t=gCK(t))}null!=artL&&null!=artM&&null!=artR&&sW>=1280&&sW<=1980&&(artL.setAttribute("style","flex:0 0 190px;max-width:190px"),artM.setAttribute("style","flex:0 0 "+mWd+";max-width:"+mWd),artR.setAttribute("style","flex:0 0 340px;max-width:340px")),sW>=1280&&sW<=1980&&affix_r2.setAttribute("style","width:328px"),document.addEventListener("DOMContentLoaded",function(){[cT1,gF,baseURL+"css/custom.css"].forEach(function(t){var e=document.createElement("link");e.setAttribute("rel","stylesheet"),e.setAttribute("type","text/css"),e.setAttribute("href",t),t==cT1&&e.setAttribute("id",cTId),t==gF&&(e.setAttribute("media","none"),e.setAttribute("onload","this.media='all'")),document.head.appendChild(e)}),[baseURL+"js/compiled.min.js",baseURL+"plugins/highlight/highlight.pack.js"].forEach(function(t){var e=document.createElement("script");e.setAttribute("type","text/javascript"),e.setAttribute("src",t),document.body.appendChild(e)})},!1),window.addEventListener("load",t=>{$(window).scroll(function(){$(window).scrollTop()>200?$("#back-to-top").fadeIn(200):$("#back-to-top").fadeOut(200)}),$("#back-to-top").on("click",function(){return $("html, body").animate({scrollTop:0},"800"),!1}),$("#responsive-menu").slicknav({duration:200,easingOpen:"easeInExpo",easingClose:"easeOutExpo",closedSymbol:'<i class="fa fa-plus"></i>',openedSymbol:'<i class="fa fa-minus"></i>',prependTo:"#slicknav-mobile",allowParentLinks:!0,label:""}),function(t){t(function(){var e=t(window),s=t(document.body);e.on("load",function(){s.scrollspy("refresh")});var a=t(".navbar").outerHeight(!0);s.scrollspy({target:".scrollspy-sidebar, .ads_right",offset:a}),setTimeout(function(){var e=t(".scrollspy-sidebar");e.affix({offset:{top:function(){var s=e.offset().top,a=parseInt(e.children(0).css("margin-top"),10),o=t(".scrollspy-nav").height();return this.top=s-o-a},bottom:function(){return this.bottom=t(".scrollspy-footer").outerHeight(!0)+8}}})},100),setTimeout(function(){t(".ads_right").affix({offset:{top:function(){return t(".r_target").outerHeight(!0)},bottom:function(){return this.bottom=t(".scrollspy-footer").outerHeight(!0)+8}}})},100),t(".ads_left").css({width:t(".ads_left").outerWidth(!0)}),t(".btm_rv").outerWidth(!0)<=767&&t(".btm_st").css({width:t(".btm_rv").outerWidth(!0)-34,height:60,margin:"0 32px 0 2px"});let o=t(document).outerWidth(!0),n=t(".adt_rv").outerWidth(!0);o<768&&n<336?t(".adt_st").css({width:300,height:250}):o<768&&n>=336?t(".adt_st").css({width:336,height:280}):o>=768&&n<=1024?t(".adt_st").css({width:n}):n>1024?t(".adt_st").css({width:1024}):t(".adt_st").css({width:n,height:60});let c=t(".gad_rv").outerWidth(!0);c<=767&&t(".gad_st").css({width:c})})}(window.jQuery);function e(){dataLayer.push(arguments)}["https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js","https://www.googletagmanager.com/gtag/js?id=UA-108142769-1"].forEach(function(t){var e=document.createElement("script");e.setAttribute("type","text/javascript"),e.setAttribute("src",t),e.setAttribute("async",!0),document.head.appendChild(e)}),"undefined"!=typeof adsbygoogle&&(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-2906669545650611",enable_page_level_ads:!0}),window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","UA-108142769-1");let s="";cCK("cThe")&&gCK("cThe")==cT2Cln&&([lT,dT]=[dT,lT],s+=" "+cgT),document.querySelectorAll("pre code").forEach(t=>{hljs.highlightBlock(t);var e='<div class="code_change_btn"><button class="code_change_dark code_change_toggle'+s+'" data-toggle="tooltip" data-placement="bottom" data-title="'+dT+'"><i class="fa fa-adjust" aria-hidden="true"></i></button><button class="code_change_dark cg_clip'+s+'" data-toggle="tooltip" data-placement="bottom" data-title="Copy code"><i class="fa fa-clone" aria-hidden="true"></i></button></div>',a=(new DOMParser).parseFromString(e,"text/html").firstChild.lastChild.firstChild;t.parentNode.appendChild(a)});var a=document.getElementsByClassName("code_change_toggle"),o=document.getElementsByClassName("cg_clip");if(void 0!==a&&void 0!==o){for(let t of a)t.addEventListener("click",()=>{let t="";document.getElementById(cTId).getAttribute("href")!==cT2?(n(cTId,cT2),t+=lT):(n(cTId,cT1),t+=dT);for(let e=0;e<a.length;e++)a[e].classList.toggle(cgT),o[e].classList.toggle(cgT),a[e].setAttribute("data-original-title",t)});for(let t=0;t<o.length;t++)o[t].addEventListener("click",()=>{let e=document.getElementsByClassName("hljs")[t];if(void 0!==e){let t=document.createElement("textarea");t.style.position="absolute",t.style.top="0",t.style.left="0",t.style.width="100%",t.style.height="0",t.style.display="block",t.style.background="transparent",t.value=e.innerText,e.appendChild(t),t.focus(),t.select();try{document.execCommand("copy")?c({message:"Copied to clipboard!"}):console.error("Cannot copy text")}catch(t){console.log("Unable to copy.")}t.remove()}})}function n(t,e){document.getElementById(t).setAttribute("href",e),sCK("cThe",e,30)}function c(t){let e=document.getElementById("snackbar");e.childNodes[1].innerHTML=void 0!==t.message?t.message:"Hello Snackbar!",e.className="snack_show",setTimeout(function(){e.className=e.className.replace("snack_show","")},3e3)}$("#sB").on("submit",function(t){t.preventDefault();let e=$(this),s=$("#sMsg");e&&$.ajax({url:baseURL+"subscribe",dataType:"json",type:"POST",data:e.serialize(),cache:!1,processData:!1,beforeSend:function(){s.html("<span class='bSw'>Saving...</span>")},success:function(t){void 0!==s&&(0==t.error?s.html("<span class='scMsg'>"+t.msg+"</span>"):s.html("<span class='errMsg'>"+t.msg+"</span>"))},error:function(t){console.log("Err: ",t)}})}),$("#fBtnY").on("click",()=>{$("#fMr1").addClass("dN"),$("#fMr2").addClass("dY"),$("#fY").addClass("dY");let t=$("#fY"),e=$("#rexcode");e.val()?$.ajax({url:baseURL+"feedback?rexcode="+e.val(),type:"GET",cache:!1,processData:!1,contentType:!1,beforeSend:function(){t.html("<span class='fMt'>Saving your feed back...</span>")},success:function(e){void 0!==t&&t.html("<span class='fMt'>Thanks for your feedback!</span>")},error:function(t){console.log("Err: ",t)}}):t.html("<span class='fMt'>Something went wrong!</span>")}),$("#fBtnN").on("click",()=>{$("#fMr1").addClass("dN"),$("#fMr2").addClass("dY"),$("#fN").addClass("dY")}),$("#sFbtn").on("click",()=>{let t=$("#fMsg"),e=$("#rexcode"),s=$("#outMsg");if(t.val()&&e.val()){let a=new FormData;a.append("rexcode",e.val()),a.append("message",t.val()),a.append("type",1),$.ajax({url:baseURL+"feedback",dataType:"json",type:"POST",data:a,cache:!1,processData:!1,contentType:!1,beforeSend:function(){s.html("<span class='outMsg'>Saving your feed back...</span>")},success:function(t){void 0!==s&&(0==t.error?($("#fN").removeClass("dY"),$("#fNs").addClass("dY")):s.html("<span class='outMsg'>"+t.msg+"</span>"))},error:function(t){console.log("Err: ",t)}})}else s.html("<span class='outMsg'>Kindly enter your message!</span>")})},!1);let left_nav_btn=document.getElementsByClassName("left_nav_btn");function clsPp(){document.getElementById("fPp").style.display="none"}void 0!==left_nav_btn&&left_nav_btn[0].remove(),"serviceWorker"in navigator&&window.addEventListener("load",()=>{navigator.serviceWorker.register(baseURL+"sw.js").then(function(t){console.log("Service worker successfully registered on scope",t.scope)}).catch(function(t){console.log(t)})});</script></body></html>

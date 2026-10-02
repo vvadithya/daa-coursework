@@ -1,0 +1,7 @@
+The standard Matrix Chain Multiplication (MCM) problem statement corresponding exactly to that recurrence is:
+
+Given a sequence of matrices \(A_1, A_2, \ldots, A_n\), determine the most efficient way to multiply them by choosing the optimal parenthesization.
+
+The matrices must be multiplied in the given order, but because matrix multiplication is associative, the order of parenthesization can be changed.
+
+The objective is to minimize the total number of scalar multiplications required.

@@ -1,0 +1,13 @@
+┌─────────────────────────────────────────────────────────────┐
+│              QUICK SORT vs MERGE SORT                       │
+├──────────────┬───────────────────────┬─────────────────────┤
+│ Aspect       │ Quick Sort           │ Merge Sort          │
+├──────────────┼───────────────────────┼─────────────────────┤
+│ Best Time    │ O(n log n)           │ O(n log n)          │
+│ Avg Time     │ O(n log n)           │ O(n log n)          │
+│ Worst Time   │ O(n²) ⚠️             │ O(n log n) ✅       │
+│ Space        │ O(log n) ✅          │ O(n) ⚠️             │
+│ Stability    │ No                   │ Yes                 │
+│ In-place     │ Yes                  │ No                  │
+│ Use Case     │ General sorting      │ Stable sorting      │
+└──────────────┴───────────────────────┴─────────────────────┘

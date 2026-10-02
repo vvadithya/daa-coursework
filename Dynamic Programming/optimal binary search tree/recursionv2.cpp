@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// understand the problem
+// u have some sorted keys : [1 , 3 , 5, ,6 , 7 ,10]
+// u have their search frequencies as well [x1 , x2 , x3 ....]
+// so basically everytime u search some cost is there,which is equal to level
+// so if if i query xi times,for that particular node the cost is x1.level(xi)
+// total cost is sum of all of these
+// observe that the acc values of sorted keys is irrelevant,but the fact that its sorted is important
+// allows us to make recurrence rlsp
+// well be using two state variables,to find the cost from range i to j
+
+
+int cost(int i , int j , const vector<int>&freq , const vector<int>&prefix_sum){
+    // lets say our root node is r
+    // so now left subtree is going to be keys from k1 to kr-1
+    // right subtree is going to be keys from kr+1 to kn
+    // so check for all possible rs and return minimum
+    
+    // also no matter root,we have to incur a cost
+    // note that on picking a node,every element will go down by 1 level
+    // so just sum up from i to j
+
+    // base cases
+    if(i > j){
+        // not a valid rnage,therefore no nodes selected,no cost
+        return 0;
+    }
+    int level_cost = prefix_sum[j+1] - prefix_sum[i];
+    int mini_case_of_root = INT_MAX;
+    for(int r = i ; r <= j ; r++){
+        mini_case_of_root = min(mini_case_of_root , cost(i , r-1 , freq , prefix_sum) + cost(r+1 , j , freq , prefix_sum));
+    }
+    return mini_case_of_root + level_cost;
+}
+
+int main(){
+    // assume keys are: {k1,k2.....kn}
+    vector<int> freq = {4, 2, 6, 3};
+    int n = freq.size() , sum = 0;
+    vector<int>prefix_sum = {0};
+    for(int num : freq){
+        sum += num;
+        prefix_sum.push_back(sum);
+    }
+    cout << cost(0 , n-1 , freq , prefix_sum);
+
+}

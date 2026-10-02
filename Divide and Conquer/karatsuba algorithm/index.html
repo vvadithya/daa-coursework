@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <title>Karatsuba Algorithm (for fast integer multiplication)</title>
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  
+  <link rel="stylesheet" type="text/css" href="/assets/built/screen.css?v=03120c38e9" /> 
+  <!-- for progress in navigation bar -->
+  <link rel="stylesheet" type="text/css" href="/assets/built/lightbox.css?v=03120c38e9" />
+  <!-- for syntax highlight -->
+  <link rel="stylesheet" type="text/css" href="/assets/built/prism.css?v=03120c38e9" />
+  <!-- merge2.css -> complexity.css + post_page.css -->
+  <link rel="stylesheet" type="text/css" href="/assets/built/merge2.css?v=03120c38e9" />
+
+  <!-- table of contents disabled -->
+  <!--
+  <link rel="stylesheet" type="text/css" href="/assets/css/head_tab.css?v=03120c38e9" />
+  <link rel="stylesheet" type="text/css" href="/assets/css/tab.css?v=03120c38e9" />
+  -->
+  <!-- course page is not activated -->
+  <!--
+  <link rel="stylesheet" type="text/css" href="/assets/css/course_page.css?v=03120c38e9" />
+  -->
+  <link rel="stylesheet" type="text/css" href="/assets/css/search_page.css?v=03120c38e9" />
+  <!--
+  <link rel="stylesheet" type="text/css" href="/assets/css/navbar.css?v=03120c38e9" /> -->
+
+  <meta name="description" content="Karatsuba algorithm is a fast multiplication algorithm that uses a divide and conquer approach to multiply two numbers.">
+    <link rel="icon" href="https://iq.opengenus.org/content/images/size/w256h256/2018/02/sq_logo.png" type="image/png">
+    <link rel="canonical" href="https://iq.opengenus.org/karatsuba-algorithm/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="OpenGenus IQ: Pioneering AI Engineering &amp; Algorithms">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Karatsuba Algorithm (for fast integer multiplication)">
+    <meta property="og:description" content="Karatsuba algorithm is a fast multiplication algorithm that uses a divide and conquer approach to multiply two numbers.">
+    <meta property="og:url" content="https://iq.opengenus.org/karatsuba-algorithm/">
+    <meta property="article:published_time" content="2018-06-17T18:17:26.000Z">
+    <meta property="article:modified_time" content="2021-08-23T20:51:38.000Z">
+    <meta property="article:tag" content="Algorithms">
+    <meta property="article:tag" content="divide and conquer">
+    <meta property="article:tag" content="multiplication">
+    <meta property="article:tag" content="karatsuba algorithm">
+    <meta property="article:tag" content="integer multiplication">
+    <meta property="article:tag" content="List of Mathematical Algorithms">
+    
+    <meta property="article:publisher" content="https://www.facebook.com/opengenus">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Karatsuba Algorithm (for fast integer multiplication)">
+    <meta name="twitter:description" content="Karatsuba algorithm is a fast multiplication algorithm that uses a divide and conquer approach to multiply two numbers.">
+    <meta name="twitter:url" content="https://iq.opengenus.org/karatsuba-algorithm/">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Olawale Dosunmu">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Algorithms, divide and conquer, multiplication, karatsuba algorithm, integer multiplication, List of Mathematical Algorithms">
+    <meta name="twitter:site" content="@OpenGenus">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "OpenGenus IQ: Pioneering AI Engineering & Algorithms",
+        "url": "https://iq.opengenus.org/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://iq.opengenus.org/content/images/2018/02/ll.jpeg"
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Olawale Dosunmu",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://iq.opengenus.org/content/images/2020/01/olawale.jpg",
+            "width": 200,
+            "height": 200
+        },
+        "url": "https://iq.opengenus.org/author/olawale/",
+        "sameAs": [
+            "https://www.linkedin.com/in/waledosunmu/"
+        ]
+    },
+    "contributor": [
+        {
+            "@type": "Person",
+            "name": "OpenGenus Tech Review Team",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://iq.opengenus.org/content/images/2018/06/logo_small.png"
+            },
+            "url": "https://iq.opengenus.org/author/opengenus-2/",
+            "sameAs": [
+                "https://iq.opengenus.org",
+                "https://www.facebook.com/opengenus",
+                "https://x.com/opengenus"
+            ]
+        }
+    ],
+    "headline": "Karatsuba Algorithm (for fast integer multiplication)",
+    "url": "https://iq.opengenus.org/karatsuba-algorithm/",
+    "datePublished": "2018-06-17T18:17:26.000Z",
+    "dateModified": "2021-08-23T20:51:38.000Z",
+    "keywords": "Algorithms, divide and conquer, multiplication, karatsuba algorithm, integer multiplication, List of Mathematical Algorithms",
+    "description": "Karatsuba algorithm is a fast multiplication algorithm that uses a divide and conquer approach to multiply two numbers.",
+    "mainEntityOfPage": "https://iq.opengenus.org/karatsuba-algorithm/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 6.53">
+    <link rel="alternate" type="application/rss+xml" title="OpenGenus IQ: Pioneering AI Engineering &amp; Algorithms" href="https://iq.opengenus.org/rss/">
+    <script defer src="https://cdn.jsdelivr.net/ghost/portal@~2.69/umd/portal.min.js" data-i18n="true" data-ghost="https://iq.opengenus.org/" data-key="7ac8f46672fa171b4eee1581df" data-api="https://iq.opengenus.org/ghost/api/content/" data-locale="en" crossorigin="anonymous"></script><style id="gh-members-styles">.gh-post-upgrade-cta-content,
+.gh-post-upgrade-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.gh-post-upgrade-cta-content {
+    border-radius: 8px;
+    padding: 40px 4vw;
+}
+
+.gh-post-upgrade-cta h2 {
+    color: #ffffff;
+    font-size: 28px;
+    letter-spacing: -0.2px;
+    margin: 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta p {
+    margin: 20px 0 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta small {
+    font-size: 16px;
+    letter-spacing: -0.2px;
+}
+
+.gh-post-upgrade-cta a {
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a:hover {
+    color: #ffffff;
+    opacity: 0.8;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a.gh-btn {
+    display: block;
+    background: #ffffff;
+    text-decoration: none;
+    margin: 28px 0 0;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.gh-post-upgrade-cta a.gh-btn:hover {
+    opacity: 0.92;
+}</style>
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/sodo-search.min.js" data-key="7ac8f46672fa171b4eee1581df" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/main.css" data-sodo-search="https://iq.opengenus.org/" data-locale="en" crossorigin="anonymous"></script>
+    
+    <link href="https://iq.opengenus.org/webmentions/receive/" rel="webmention">
+    <script defer src="/public/cards.min.js?v=03120c38e9"></script>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=03120c38e9">
+    <script defer src="/public/comment-counts.min.js?v=03120c38e9" data-ghost-comments-counts-api="https://iq.opengenus.org/members/api/comments/counts/"></script>
+    <script defer src="/public/member-attribution.min.js?v=03120c38e9"></script><style>:root {--ghost-accent-color: #FF1A75;}</style>
+    <style>
+#post-full table{ width:100%; border-collapse:collapse;}
+@media (max-width:640px){ #post-full table{ display: block; overflow-x:auto; -webkit-overflow-scrolling:touch; }}
+</style>
+
+<style>
+ins.adsbygoogle[data-ad-status="unfilled"] {
+    display: none !important;
+}
+pre {
+  overflow: hidden !important;
+  word-wrap: break-word !important;
+  word-break: break-all !important;
+  white-space: pre;
+}
+</style>
+
+<script data-ad-client="ca-pub-6329206778297580" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6329206778297580"
+     crossorigin="anonymous"></script>
+
+<script async src="https://fundingchoicesmessages.google.com/i/pub-6329206778297580?ers=1" nonce="ynArYzv-IrmSxnbHoQm6Tg"></script><script nonce="ynArYzv-IrmSxnbHoQm6Tg">(function() {function signalGooglefcPresent() {if (!window.frames['googlefcPresent']) {if (document.body) {const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe);} else {setTimeout(signalGooglefcPresent, 0);}}}signalGooglefcPresent();})();</script>
+<script>(function(){/*
+ Copyright The Closure Library Authors.
+ SPDX-License-Identifier: Apache-2.0
+*/
+'use strict';var aa=function(a){var b=0;return function(){return b<a.length?{done:!1,value:a[b++]}:{done:!0}}},ba="function"==typeof Object.create?Object.create:function(a){var b=function(){};b.prototype=a;return new b},k;if("function"==typeof Object.setPrototypeOf)k=Object.setPrototypeOf;else{var m;a:{var ca={a:!0},n={};try{n.__proto__=ca;m=n.a;break a}catch(a){}m=!1}k=m?function(a,b){a.__proto__=b;if(a.__proto__!==b)throw new TypeError(a+" is not extensible");return a}:null}
+var p=k,q=function(a,b){a.prototype=ba(b.prototype);a.prototype.constructor=a;if(p)p(a,b);else for(var c in b)if("prototype"!=c)if(Object.defineProperties){var d=Object.getOwnPropertyDescriptor(b,c);d&&Object.defineProperty(a,c,d)}else a[c]=b[c];a.v=b.prototype},r=this||self,da=function(){},t=function(a){return a};var u;var w=function(a,b){this.g=b===v?a:""};w.prototype.toString=function(){return this.g+""};var v={},x=function(a){if(void 0===u){var b=null;var c=r.trustedTypes;if(c&&c.createPolicy){try{b=c.createPolicy("goog#html",{createHTML:t,createScript:t,createScriptURL:t})}catch(d){r.console&&r.console.error(d.message)}u=b}else u=b}a=(b=u)?b.createScriptURL(a):a;return new w(a,v)};var A=function(){return Math.floor(2147483648*Math.random()).toString(36)+Math.abs(Math.floor(2147483648*Math.random())^Date.now()).toString(36)};var B={},C=null;var D="function"===typeof Uint8Array;function E(a,b,c){return"object"===typeof a?D&&!Array.isArray(a)&&a instanceof Uint8Array?c(a):F(a,b,c):b(a)}function F(a,b,c){if(Array.isArray(a)){for(var d=Array(a.length),e=0;e<a.length;e++){var f=a[e];null!=f&&(d[e]=E(f,b,c))}Array.isArray(a)&&a.s&&G(d);return d}d={};for(e in a)Object.prototype.hasOwnProperty.call(a,e)&&(f=a[e],null!=f&&(d[e]=E(f,b,c)));return d}
+function ea(a){return F(a,function(b){return"number"===typeof b?isFinite(b)?b:String(b):b},function(b){var c;void 0===c&&(c=0);if(!C){C={};for(var d="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".split(""),e=["+/=","+/","-_=","-_.","-_"],f=0;5>f;f++){var h=d.concat(e[f].split(""));B[f]=h;for(var g=0;g<h.length;g++){var l=h[g];void 0===C[l]&&(C[l]=g)}}}c=B[c];d=Array(Math.floor(b.length/3));e=c[64]||"";for(f=h=0;h<b.length-2;h+=3){var y=b[h],z=b[h+1];l=b[h+2];g=c[y>>2];y=c[(y&3)<<
+4|z>>4];z=c[(z&15)<<2|l>>6];l=c[l&63];d[f++]=""+g+y+z+l}g=0;l=e;switch(b.length-h){case 2:g=b[h+1],l=c[(g&15)<<2]||e;case 1:b=b[h],d[f]=""+c[b>>2]+c[(b&3)<<4|g>>4]+l+e}return d.join("")})}var fa={s:{value:!0,configurable:!0}},G=function(a){Array.isArray(a)&&!Object.isFrozen(a)&&Object.defineProperties(a,fa);return a};var H;var J=function(a,b,c){var d=H;H=null;a||(a=d);d=this.constructor.u;a||(a=d?[d]:[]);this.j=d?0:-1;this.h=null;this.g=a;a:{d=this.g.length;a=d-1;if(d&&(d=this.g[a],!(null===d||"object"!=typeof d||Array.isArray(d)||D&&d instanceof Uint8Array))){this.l=a-this.j;this.i=d;break a}void 0!==b&&-1<b?(this.l=Math.max(b,a+1-this.j),this.i=null):this.l=Number.MAX_VALUE}if(c)for(b=0;b<c.length;b++)a=c[b],a<this.l?(a+=this.j,(d=this.g[a])?G(d):this.g[a]=I):(d=this.l+this.j,this.g[d]||(this.i=this.g[d]={}),(d=this.i[a])?
+G(d):this.i[a]=I)},I=Object.freeze(G([])),K=function(a,b){if(-1===b)return null;if(b<a.l){b+=a.j;var c=a.g[b];return c!==I?c:a.g[b]=G([])}if(a.i)return c=a.i[b],c!==I?c:a.i[b]=G([])},M=function(a,b){var c=L;if(-1===b)return null;a.h||(a.h={});if(!a.h[b]){var d=K(a,b);d&&(a.h[b]=new c(d))}return a.h[b]};J.prototype.toJSON=function(){var a=N(this,!1);return ea(a)};
+var N=function(a,b){if(a.h)for(var c in a.h)if(Object.prototype.hasOwnProperty.call(a.h,c)){var d=a.h[c];if(Array.isArray(d))for(var e=0;e<d.length;e++)d[e]&&N(d[e],b);else d&&N(d,b)}return a.g},O=function(a,b){H=b=b?JSON.parse(b):null;a=new a(b);H=null;return a};J.prototype.toString=function(){return N(this,!1).toString()};var P=function(a){J.call(this,a)};q(P,J);function ha(a){var b,c=(a.ownerDocument&&a.ownerDocument.defaultView||window).document,d=null===(b=c.querySelector)||void 0===b?void 0:b.call(c,"script[nonce]");(b=d?d.nonce||d.getAttribute("nonce")||"":"")&&a.setAttribute("nonce",b)};var Q=function(a,b){b=String(b);"application/xhtml+xml"===a.contentType&&(b=b.toLowerCase());return a.createElement(b)},R=function(a){this.g=a||r.document||document};R.prototype.appendChild=function(a,b){a.appendChild(b)};var S=function(a,b,c,d,e,f){try{var h=a.g,g=Q(a.g,"SCRIPT");g.async=!0;g.src=b instanceof w&&b.constructor===w?b.g:"type_error:TrustedResourceUrl";ha(g);h.head.appendChild(g);g.addEventListener("load",function(){e();d&&h.head.removeChild(g)});g.addEventListener("error",function(){0<c?S(a,b,c-1,d,e,f):(d&&h.head.removeChild(g),f())})}catch(l){f()}};var ia=r.atob("aHR0cHM6Ly93d3cuZ3N0YXRpYy5jb20vaW1hZ2VzL2ljb25zL21hdGVyaWFsL3N5c3RlbS8xeC93YXJuaW5nX2FtYmVyXzI0ZHAucG5n"),ja=r.atob("WW91IGFyZSBzZWVpbmcgdGhpcyBtZXNzYWdlIGJlY2F1c2UgYWQgb3Igc2NyaXB0IGJsb2NraW5nIHNvZnR3YXJlIGlzIGludGVyZmVyaW5nIHdpdGggdGhpcyBwYWdlLg=="),ka=r.atob("RGlzYWJsZSBhbnkgYWQgb3Igc2NyaXB0IGJsb2NraW5nIHNvZnR3YXJlLCB0aGVuIHJlbG9hZCB0aGlzIHBhZ2Uu"),la=function(a,b,c){this.h=a;this.j=new R(this.h);this.g=null;this.i=[];this.l=!1;this.o=b;this.m=c},V=function(a){if(a.h.body&&!a.l){var b=
+function(){T(a);r.setTimeout(function(){return U(a,3)},50)};S(a.j,a.o,2,!0,function(){r[a.m]||b()},b);a.l=!0}},T=function(a){for(var b=W(1,5),c=0;c<b;c++){var d=X(a);a.h.body.appendChild(d);a.i.push(d)}b=X(a);b.style.bottom="0";b.style.left="0";b.style.position="fixed";b.style.width=W(100,110).toString()+"%";b.style.zIndex=W(2147483544,2147483644).toString();b.style["background-color"]=ma(249,259,242,252,219,229);b.style["box-shadow"]="0 0 12px #888";b.style.color=ma(0,10,0,10,0,10);b.style.display=
+"flex";b.style["justify-content"]="center";b.style["font-family"]="Roboto, Arial";c=X(a);c.style.width=W(80,85).toString()+"%";c.style.maxWidth=W(750,775).toString()+"px";c.style.margin="24px";c.style.display="flex";c.style["align-items"]="flex-start";c.style["justify-content"]="center";d=Q(a.j.g,"IMG");d.className=A();d.src=ia;d.style.height="24px";d.style.width="24px";d.style["padding-right"]="16px";var e=X(a),f=X(a);f.style["font-weight"]="bold";f.textContent=ja;var h=X(a);h.textContent=ka;Y(a,
+e,f);Y(a,e,h);Y(a,c,d);Y(a,c,e);Y(a,b,c);a.g=b;a.h.body.appendChild(a.g);b=W(1,5);for(c=0;c<b;c++)d=X(a),a.h.body.appendChild(d),a.i.push(d)},Y=function(a,b,c){for(var d=W(1,5),e=0;e<d;e++){var f=X(a);b.appendChild(f)}b.appendChild(c);c=W(1,5);for(d=0;d<c;d++)e=X(a),b.appendChild(e)},W=function(a,b){return Math.floor(a+Math.random()*(b-a))},ma=function(a,b,c,d,e,f){return"rgb("+W(Math.max(a,0),Math.min(b,255)).toString()+","+W(Math.max(c,0),Math.min(d,255)).toString()+","+W(Math.max(e,0),Math.min(f,
+255)).toString()+")"},X=function(a){a=Q(a.j.g,"DIV");a.className=A();return a},U=function(a,b){0>=b||null!=a.g&&0!=a.g.offsetHeight&&0!=a.g.offsetWidth||(na(a),T(a),r.setTimeout(function(){return U(a,b-1)},50))},na=function(a){var b=a.i;var c="undefined"!=typeof Symbol&&Symbol.iterator&&b[Symbol.iterator];b=c?c.call(b):{next:aa(b)};for(c=b.next();!c.done;c=b.next())(c=c.value)&&c.parentNode&&c.parentNode.removeChild(c);a.i=[];(b=a.g)&&b.parentNode&&b.parentNode.removeChild(b);a.g=null};var pa=function(a,b,c,d,e){var f=oa(c),h=function(l){l.appendChild(f);r.setTimeout(function(){f?(0!==f.offsetHeight&&0!==f.offsetWidth?b():a(),f.parentNode&&f.parentNode.removeChild(f)):a()},d)},g=function(l){document.body?h(document.body):0<l?r.setTimeout(function(){g(l-1)},e):b()};g(3)},oa=function(a){var b=document.createElement("div");b.className=a;b.style.width="1px";b.style.height="1px";b.style.position="absolute";b.style.left="-10000px";b.style.top="-10000px";b.style.zIndex="-10000";return b};var L=function(a){J.call(this,a)};q(L,J);var qa=function(a){J.call(this,a)};q(qa,J);var ra=function(a,b){this.l=a;this.m=new R(a.document);this.g=b;this.i=K(this.g,1);b=M(this.g,2);this.o=x(K(b,4)||"");this.h=!1;b=M(this.g,13);b=x(K(b,4)||"");this.j=new la(a.document,b,K(this.g,12))};ra.prototype.start=function(){sa(this)};
+var sa=function(a){ta(a);S(a.m,a.o,3,!1,function(){a:{var b=a.i;var c=r.btoa(b);if(c=r[c]){try{var d=O(P,r.atob(c))}catch(e){b=!1;break a}b=b===K(d,1)}else b=!1}b?Z(a,K(a.g,14)):(Z(a,K(a.g,8)),V(a.j))},function(){pa(function(){Z(a,K(a.g,7));V(a.j)},function(){return Z(a,K(a.g,6))},K(a.g,9),K(a.g,10),K(a.g,11))})},Z=function(a,b){a.h||(a.h=!0,a=new a.l.XMLHttpRequest,a.open("GET",b,!0),a.send())},ta=function(a){var b=r.btoa(a.i);a.l[b]&&Z(a,K(a.g,5))};(function(a,b){r[a]=function(c){for(var d=[],e=0;e<arguments.length;++e)d[e-0]=arguments[e];r[a]=da;b.apply(null,d)}})("__h82AlnkH6D91__",function(a){"function"===typeof window.atob&&(new ra(window,O(qa,window.atob(a)))).start()});}).call(this);
+
+window.__h82AlnkH6D91__("WyJwdWItNjMyOTIwNjc3ODI5NzU4MCIsW251bGwsbnVsbCxudWxsLCJodHRwczovL2Z1bmRpbmdjaG9pY2VzbWVzc2FnZXMuZ29vZ2xlLmNvbS9iL3B1Yi02MzI5MjA2Nzc4Mjk3NTgwIl0sbnVsbCxudWxsLCJodHRwczovL2Z1bmRpbmdjaG9pY2VzbWVzc2FnZXMuZ29vZ2xlLmNvbS9lbC9BR1NLV3hVd0w5V1hBMkN4TlFNVldpbU1UZFpIclUzM3ZRTUxfMk9QeTYzQmc0RVhUOVN3Nloxd0UzcWVtOVFOR3FsSUJtNlNIMi1CQnQ4R3BZdHR3cGRBVnhjWm13XHUwMDNkXHUwMDNkP3RlXHUwMDNkVE9LRU5fRVhQT1NFRCIsImh0dHBzOi8vZnVuZGluZ2Nob2ljZXNtZXNzYWdlcy5nb29nbGUuY29tL2VsL0FHU0tXeFVNWXI3cm10bUhUZm1IRUlpV1hjMzdranAyR3JSaDNiMnk4bEQ3YmF3S3h5RnNod2p0T0tfVmE0SEhBTjl2QVdjQ0Npc3dkT3VENGZ4WHdMQ0NlMVFVaUFcdTAwM2RcdTAwM2Q/YWJcdTAwM2QxXHUwMDI2c2JmXHUwMDNkMSIsImh0dHBzOi8vZnVuZGluZ2Nob2ljZXNtZXNzYWdlcy5nb29nbGUuY29tL2VsL0FHU0tXeFgxcUhHdjNkZGk3R0N3b0NlbmV4bi1VellVZWtlamNJbTA3UEZQUW1hdU9jU1A1cU9QUnM2WjFEUGFuRHFGcTVyNUN1Ymt1WG91NnFVMFlyTnlhLTJHU3dcdTAwM2RcdTAwM2Q/YWJcdTAwM2QyXHUwMDI2c2JmXHUwMDNkMSIsImh0dHBzOi8vZnVuZGluZ2Nob2ljZXNtZXNzYWdlcy5nb29nbGUuY29tL2VsL0FHU0tXeFZFaEo2QUlKMmZoWDZjdnRzTFRmRy02R2NxVE5MODBJYzBhZnA4eDh0aGRJcUZ3SW9iZThtRDNCOXpmUEhEcDNEQVZxeDdXaXM2eFN6T0FUSG9jNzg0SmdcdTAwM2RcdTAwM2Q/c2JmXHUwMDNkMiIsImRpdi1ncHQtYWQiLDIwLDEwMCwiY0hWaUxUWXpNamt5TURZM056Z3lPVGMxT0RBXHUwMDNkIixbbnVsbCxudWxsLG51bGwsImh0dHBzOi8vd3d3LmdzdGF0aWMuY29tLzBlbW4vZi9wL3B1Yi02MzI5MjA2Nzc4Mjk3NTgwLmpzP3VzcXBcdTAwM2RDQkEiXSwiaHR0cHM6Ly9mdW5kaW5nY2hvaWNlc21lc3NhZ2VzLmdvb2dsZS5jb20vZWwvQUdTS1d4Vk5vOXFjbFRmc2taemJmR3FtMWVRSmVoWm1zSzk4YjNwR1ZxRlhLdm9DZnFFTEk0U2hKMVM2cWFlQTJBaVgzQlVwMjVnTXZpMnZmS1NjcjZOVjd3VlMwQVx1MDAzZFx1MDAzZCJd");</script>
+    <link rel="preconnect" href="https://fonts.bunny.net"><link rel="stylesheet" href="https://fonts.bunny.net/css?family=fira-sans:400,500,600"><style>:root {--gh-font-heading: Fira Sans;}</style>
+
+</head>
+<div id="nav_toggle" class="navbar_collapse navigation_page">
+  <div id="navbar_close">&times</div>
+  <a href="http://iq.opengenus.org">Home</a>
+  <a href="http://discourse.opengenus.org">Discussions</a>
+  <a href="http://iq.opengenus.org/guide-to-writing-a-note-at-opengenus-iq/">Write at Opengenus IQ</a>
+</div>
+
+<body class="post-template tag-algorithm tag-divide-and-conquer tag-multiplication tag-karatsuba-algorithm tag-integer-multiplication tag-mathematical-algorithm tag-hash-import-2026-07-15-19-54 tag-hash-import-2026-07-18-15-42 gh-font-heading-fira-sans">
+
+  <div id="search_page" class="search_page search_page_hide">
+    <div class="search_page_close search_toggle">&times</div>
+    <div class="search_page_body">
+      <div id="site-search" style="display:none;" class="search_form">
+        <input class="typeahead search_form_input" type="text" placeholder="Search" />
+      </div>
+    </div>
+  </div>
+  <div class="site-wrapper">
+
+    
+
+<header class="site-header outer">
+  <div class="inner">
+    <nav class="navbar">
+  <div class="burger_menu">
+    <label for="burgertoggle" >&#9776;</label>
+    <input type="checkbox" id="burgertoggle"/>
+
+  </div>
+
+
+
+
+ <div class="navbar-left">
+            <ul class="nav">
+    <li class="nav-dsa-cheatsheet"><a href="https://amzn.to/4arEtct">DSA Cheatsheet</a></li>
+    <li class="nav-home"><a href="https://iq.opengenus.org/">HOME</a></li>
+    <li class="nav-jobs"><a href="https://iq.opengenus.org/jobs/">Jobs</a></li>
+    <li class="nav-about"><a href="https://iq.opengenus.org/about/">About</a></li>
+    <li class="nav-one-liner"><a href="https://iq.opengenus.org/one/">One Liner</a></li>
+    <li class="nav-random"><a href="https://iq.opengenus.org/random/">RANDOM</a></li>
+    <li class="nav-track-your-progress"><a href="https://iq.opengenus.org/100-interview-problems/">Track your progress</a></li>
+    <li class="nav-deep-learning-free"><a href="https://iq.opengenus.org/deep-learning-checklist/">Deep Learning (FREE)</a></li>
+    <li class="nav-join-our-internship"><a href="https://discourse.opengenus.org/t/internship-guidelines-at-opengenus/2335/">Join our Internship 🎓</a></li>
+    <li class="nav-ai-engineering"><a href="https://iq.opengenus.org/ai-engineering-course/">AI Engineering</a></li>
+    <li class="nav-scholarship"><a href="https://iq.opengenus.org/ai-scholarship/">Scholarship</a></li>
+    <li class="nav-campus-ambassador"><a href="https://iq.opengenus.org/campus-ambassador/">Campus Ambassador</a></li>
+</ul>
+
+
+    </div>
+
+    <div class="navbar-right">
+      <!--  <div class="social-links"> -->
+          <a class="search_button">
+            <i class="fa fa-search search_toggle" style="cursor:pointer;"></i>
+          </a>
+        <!--    
+                <a class="social-link social-link-fb" href="https://www.facebook.com/opengenus" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+</a>
+                <a class="social-link social-link-tw" href="https://x.com/OpenGenus" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+</a>
+        </div>
+    <    
+            <a class="subscribe-button" href="#subscribe">Subscribe</a>
+         -->
+    </div>
+
+</nav>
+  </div>
+</header>
+
+<style>
+.w3-modal {
+    padding-top: 100px;
+    position: fixed;
+    display: none;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+.w3-modal-content {
+    margin: auto;
+    background-color: #fff;
+    position: relative;
+    width: 80%;
+}
+.w3-container{
+    padding: 0.01em 16px;
+}
+.w3-button {
+    position: absolute;
+    right: 0;
+    padding-right: 2.5%;
+    top: 0;
+    background: rgb(255, 255, 255);
+    padding-top: 2.5%;
+}
+
+@media screen and (min-width: 600px) {
+  .w3-modal-content {
+       width: 70%;
+}
+
+@media screen and (min-width: 800px) {
+  .w3-modal-content {
+       width: 60%;
+}
+}
+
+.gssb_c .gsc-completion-container{
+  position: fixed;
+  width: fit-content !important;
+}
+</style>
+
+<script async src="https://cse.google.com/cse.js?cx=a08efacafd37fe86c"></script>
+
+<div id="id01" class="w3-modal" style="z-index: 500; max-width: 0em 3em;">
+  <div class="w3-modal-content">
+    <div class="w3-container">
+      <button onclick="document.getElementById('id01').style.display='none'"
+      class="w3-button">&times;</button>
+      <br>
+      <p style="font-size:1.5vw;">Search anything:</p>
+      <div class="gcse-search"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openmodal() {
+    document.getElementById('id01').style.display='block';
+      document.getElementById("gsc-i-id1").focus();
+  }
+</script> <style>
+/* left-side-bar styling. */
+.left-side-bar-wrapper {
+  position: relative;
+  min-width: 180px;
+    width: 20%;
+}
+.left-side-bar-top {
+  border-right: 1px solid #f2f3f4;
+  width: 100%;
+  transition: all 0.2s ease-in;
+  margin-bottom: 1rem;
+  height: 230px;
+}
+.top-side-bar-links {
+  height: 180px;
+  overflow: auto;
+}
+.top-left #show-all:checked ~ .top-side-bar-links .left-side-bar-link {
+  display: list-item;
+}
+.top-left #show-all ~ label[for="show-all"] {
+  display: none;
+}
+.top-left {
+  position: relative;
+}
+.top-left #show-all {
+  display: none;
+}
+.top-left label[for="show-all"] {
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  bottom: 0;
+  font-size: 0.75em;
+  text-align: center;
+  line-height: 1em;
+  border: 1px solid #ddd;
+  padding: 0.5em;
+  cursor: pointer;
+  text-transform: uppercase;
+  color: #444;
+}
+.top-left label[for="show-all"]:hover {
+  border: 1px solid #aaa;
+}
+.top-left label[for="show-all"]:active {
+  border: 1px solid #222;
+  background-color: #222;
+  color: #fff;
+}
+
+.second-left {
+  position: relative;
+  z-index: 99;
+}
+.left-side-bar {
+  border-right: 1px solid #f2f3f4;
+  height: calc(100vh - 45px);
+  overflow-y: auto;
+  list-style: none;
+  transition: all 0.2s ease-in;
+  background-color: #fff;
+}
+.left-side-bar-link a {
+  font-size: 14px;
+}
+.left-side-bar-link a:hover {
+  color: var(--blue);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.main-posts {
+  display: flex;
+}
+.main-posts.fix-bottom .left-side-bar,
+.main-posts.fix-top .left-side-bar {
+  position: fixed;
+  top: 60px;
+}
+.main-posts.flex-bottom {
+  align-items: flex-end;
+}
+
+.left-side-bar-wrapper .tag-title {
+  background-color: #000;
+  padding: 1rem;
+}
+.side-bar-tag-name {
+  color: #fff;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+/* right-side-bar styling */
+.right-side-bar {
+  max-width: 300px;
+  width: 100%;
+}
+
+.right-side-bar-article {
+  background-color: #fff;
+  margin: 1rem 0;
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+
+.right-side-bar-article-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 90%;
+  left: -40px;
+  padding-left: 5px;
+  background-color: #000;
+  color: #fff;
+  font-weight: bold;
+  margin: 1rem 0;
+}
+
+.right-side-bar-article-content {
+  padding-left: 10px;
+  list-style: none;
+}
+
+.right-side-bar-article-content a:hover {
+  color: #05abe0;
+  transition: all ease 0.2s;
+}
+@media (max-width: 900px) {
+  .second-left {
+    z-index: 99;
+  }
+  .left-side-bar-top {
+    margin-bottom: 0;
+  }
+  .main-posts.fix-bottom .left-side-bar,
+  .main-posts.fix-top .left-side-bar {
+    position: fixed;
+    top: 38px;
+  }
+  .main-posts {
+    position: relative;
+  }
+}
+
+@media (max-width: 600px) {
+  .second-left {
+    z-index: 99;
+  }
+  .left-side-bar-top {
+    margin-bottom: 0;
+  }
+  .left-side-bar-wrapper {
+    display: none;
+  }
+}
+
+.left-side-bar,
+.top-side-bar-links {
+    scrollbar-width: thin;              /* Firefox */
+    scrollbar-color: #c7ced6 transparent;
+}
+
+.left-side-bar::-webkit-scrollbar,
+.top-side-bar-links::-webkit-scrollbar {
+    width: 8px;
+}
+
+.left-side-bar::-webkit-scrollbar-thumb,
+.top-side-bar-links::-webkit-scrollbar-thumb {
+    background: #c7ced6;
+    border-radius: 8px;
+}
+
+.left-side-bar::-webkit-scrollbar-thumb:hover,
+.top-side-bar-links::-webkit-scrollbar-thumb:hover {
+    background: #aab3bd;
+}
+
+.left-side-bar::-webkit-scrollbar-track,
+.top-side-bar-links::-webkit-scrollbar-track {
+    background: transparent;
+}
+.left-side-bar-link a{
+  color:#424245;
+  letter-spacing:-0.01em;
+}
+</style>
+
+<main id="site-main" class="site-main outer" role="main">
+<div id="main-posts" class="main-posts">
+
+    <div id="left-side-bar-wrapper" class="left-side-bar-wrapper">
+  <div id="first-left" class="first-left">
+    <div id="left-side-bar-top" class="left-side-bar-top">
+      <aside id="left-side-bar-inner" class="left-side-bar-inner top-left">
+  <div class="tag-title">
+    <span class="side-bar-tag-name">
+      Interesting posts
+    </span>
+  </div>
+
+  <div class="top-side-bar-links">
+    <ul>
+      <li class="left-side-bar-link"><a href="https://iq.opengenus.org/best-competitive-programmers/">Top Competitive Programmers</a></li>
+      <li class="left-side-bar-link"><a href="https://iq.opengenus.org/unsolved-problems-in-algorithms/">Unsolved Problems in Algorithms</a></li>
+      <li class="left-side-bar-link"><a href="https://iq.opengenus.org/top-patent-person-in-india/">Top patent holders in India</a></li>
+      <li class="left-side-bar-link"><a href="https://iq.opengenus.org/get-developer-job-in-japan/">How to get Developer Job in Japan?</a></li>
+      <li class="left-side-bar-link"><a href="http://internship.opengenus.org">[INTERNSHIP]</a></li>
+      <li class="left-side-bar-link"><a href="https://iq.opengenus.org/most-profitable-software-patents/">STORY: Most Profitable Software Patents</a></li>
+      <li class="left-side-bar-link"><a href="https://iq.opengenus.org/earn-by-filing-patents/">How to earn by filing Patents?</a></li>
+      <li class="left-side-bar-link"><a href="https://iq.opengenus.org/richest-programmers-in-the-world/">Richest Programmers in the World</a></li>
+      <li class="left-side-bar-link"><a href="https://iq.opengenus.org/evolution-of-integer-multiplication/">STORY: Multiplication from 1950 to 2022</a></li>
+      <li class="left-side-bar-link"><a href="https://iq.opengenus.org/position-of-india-in-icpc/">Position of India at ICPC World Finals (1999 to 2021)</a></li>
+      <li class="left-side-bar-link"><a href="https://iq.opengenus.org/most-dangerous-line-of-code/">Most Dangerous Line of Code 💀</a></li>
+      <li class="left-side-bar-link"><a href="https://iq.opengenus.org/age-of-programming-languages/">Age of All Programming Languages</a></li>
+      <li class="left-side-bar-link"><a href="https://iq.opengenus.org/earn-money-online-as-programmer/">How to earn money online as a Programmer?</a></li>
+      <li class="left-side-bar-link"><a href="https://iq.opengenus.org/kolmogorov-n2-conjecture/">STORY: Kolmogorov N^2 Conjecture Disproved</a></li>
+      <li class="left-side-bar-link"><a href="https://iq.opengenus.org/grigori-perelman/">STORY: man who refused $1M for his discovery</a></li>
+      <li class="left-side-bar-link"><a href="https://iq.opengenus.org/bram-moolenaar/">STORY: Man behind VIM</a></li>
+      <li class="left-side-bar-link"><a href="https://iq.opengenus.org/galactic-algorithm/">STORY: Galactic algorithm</a></li>
+      <li class="left-side-bar-link"><a href="https://iq.opengenus.org/inventor-of-linked-list/">STORY: Inventor of Linked List</a></li>
+      <li class="left-side-bar-link"><a href="https://iq.opengenus.org/tag/questions/">Practice Interview Questions</a></li>
+      <li class="left-side-bar-link"><a href="https://iq.opengenus.org/list-of-binary-tree-problems/">List of 50+ Binary Tree Problems</a></li>
+      <li class="left-side-bar-link"><a href="https://iq.opengenus.org/list-of-dynamic-programming-problems/">List of 100+ Dynamic Programming Problems</a></li>
+      <li class="left-side-bar-link"><a href="https://iq.opengenus.org/list-of-array-problems/">List of 50+ Array Problems</a></li>
+      <li class="left-side-bar-link"><a href="https://iq.opengenus.org/greedy-algorithms-you-must-attempt/">11 Greedy Algorithm Problems [MUST]</a></li>
+      <li class="left-side-bar-link"><a href="https://iq.opengenus.org/list-of-linked-list-problems/">List of 50+ Linked List Problems</a></li>
+      <li class="left-side-bar-link"><a href="https://iq.opengenus.org/list-of-graph-algorithms/">100+ Graph Algorithms and Techniques</a></li>
+    </ul>
+    </ul>
+  </div>
+</aside>    </div>
+  </div>
+  <div class="second-left">
+    <div id="left-side-bar" class="left-side-bar">
+        <aside id="left-side-bar-inner" class="left-side-bar-inner">
+    <div class="tag-title">
+      <span class="side-bar-tag-name">
+        Algorithms
+        tutorial
+      </span>
+    </div>
+  <div class="left-side-bar-links">
+    <ul>
+
+      <!-- Sidebar Multiplex -->
+      <ins class="adsbygoogle adsense_sidebar_multiplex_1"
+           style="display:block"
+           data-ad-format="autorelaxed"
+           data-ad-client="ca-pub-6329206778297580"
+           data-ad-slot="9028710882"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+
+      <!-- Sidebar fixed size 120x250 -->
+      <!--
+      <ins class="adsbygoogle"
+           style="display:inline-block;width:120px;height:250px"
+           data-ad-client="ca-pub-6329206778297580"
+           data-ad-slot="4020428451"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      -->
+
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/chromatic-art-gallery-problems/"
+              >Navigating the Vibrant Landscape of Chromatic Art Gallery Problems</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/daily-43/"
+              >DAILY43: Algorithmic Problems for Coding Interviews: Easy level, C++ edition</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/hierholzers-algorithm-and-reconstruct-itinerary-problem/"
+              >Hierholzer’s Algorithm and Solving Reconstruct Itinerary Problem</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/zellers-congruence/"
+              >Zeller’s Congruence</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/quick-sort-using-queue/"
+              >Quick Sort using Queue</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/minimum-absolute-difference-between-elements-with-constraint/"
+              >Minimum Absolute Difference Between Elements With Constraint</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/maximum-profit-by-buying-and-selling-share-at-most-k-times/"
+              >Maximum Profit by Buying and Selling a Share at Most k Times</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/cook-levins-theorem/"
+              >Cook-Levin&#x27;s Theorem</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/modular-multiplication-in-cpp/"
+              >Modular Multiplication in C++</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/fnv-hash-algorithm/"
+              >Fowler-Noll-Vo (FNV) Hash Algorithm</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/find-second-smallest-and-second-largest-element-in-array/"
+              >Find Second Smallest and Second Largest Element in an array</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/rendezvous-hashing/"
+              >Rendezvous hashing</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/solving-course-scheduling-problem-using-topological-sort/"
+              >Solving Course Scheduling Problem using Topological Sort</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/legendre-formula/"
+              >Legendre and His Formula: Speeding Up Factorial Calculations</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/exponent-of-number/"
+              >Finding Exponent of a Number [5 approaches]</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/min-and-max-element-in-array/"
+              >Min and Max element in array</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/skyline-problem/"
+              >Skyline Problem</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/floor-in-sorted-array/"
+              >Find floor in sorted array</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/toom-cook-algorithm-multiplication/"
+              >Toom Cook method for multiplication</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/halls-marriage-theorem/"
+              >Hall&#x27;s Marriage Theorem</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/quota-sampling/"
+              >Quota Sampling</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/causal-inference/"
+              >Causal Inference</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/projection-pursuit/"
+              >Projection Pursuit (PP)</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/brocards-conjecture/"
+              >Brocard’s conjecture</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/oppermanns-conjecture/"
+              >Oppermann&#x27;s conjecture</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/brocards-problem/"
+              >Brocard&#x27;s problem</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/fermat-number-and-pepin-test/"
+              >Fermat number and Pepin&#x27;s test</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/lagranges-four-square/"
+              >Lagrange’s Four Squares Theorem</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/mersenne-prime/"
+              >Mersenne prime numbers</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/andrica-conjecture/"
+              >Andrica&#x27;s conjecture</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/cramers-conjecture/"
+              >Cramer&#x27;s conjecture</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/zeckendorfs-theorem/"
+              >Zeckendorf&#x27;s theorem</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/check-if-given-year-is-leap-year/"
+              >Check if given year is a leap year [Algorithm]</a></li>
+            <li class="left-side-bar-link"><a
+                target="_blank"
+                href="/convert-decimal-to-octal/"
+              >Convert Decimal to Octal</a></li>
+    </ul>
+  </div>
+</aside>    </div>
+    </div>
+</div>
+  <div class="inner" id="inner">
+
+  <!-- Before Header -->
+
+    <article id="post-full" class="post-full post tag-algorithm tag-divide-and-conquer tag-multiplication tag-karatsuba-algorithm tag-integer-multiplication tag-mathematical-algorithm tag-hash-import-2026-07-15-19-54 tag-hash-import-2026-07-18-15-42 no-image no-image">
+
+      <header class="post-full-header">
+
+        <h1 class="post-full-title" style="color:#292929; font-size:30px ; ">Karatsuba Algorithm (for fast integer multiplication)</h1>
+        
+        <div class="upper_taglist">
+          <h4 id="text" class="less">
+            <div id="taglist">
+              <a target="_blank" href="/tag/algorithm/" title="Algorithms" class="tag_item">Algorithms</a>
+              <a target="_blank" href="/tag/divide-and-conquer/" title="divide and conquer" class="tag_item">divide and conquer</a>
+              <a target="_blank" href="/tag/multiplication/" title="multiplication" class="tag_item">multiplication</a>
+              <a target="_blank" href="/tag/karatsuba-algorithm/" title="karatsuba algorithm" class="tag_item">karatsuba algorithm</a>
+              <a target="_blank" href="/tag/integer-multiplication/" title="integer multiplication" class="tag_item">integer multiplication</a>
+              <a target="_blank" href="/tag/mathematical-algorithm/" title="List of Mathematical Algorithms" class="tag_item">List of Mathematical Algorithms</a>
+            </div>
+          </h4>
+        </div>
+        <button id="more" class="more-tags-button">More</button>
+        <button id="less" class="more-tags-button">Less</button>
+
+      </header>
+
+      <button id="scrollBtn" title="Go to top">Up</button>
+
+      <div class="post-content">
+      <section class="post-full-content">
+
+        <div id="og-internship-ad" style="display:none; text-align:center;">
+        <a href="http://internship.opengenus.org" target="_blank">
+        <picture>
+          <source media="(max-width: 530px)" width="289" height="141" srcset="/assets/images/internship-small.svg">
+          <img
+            src="/assets/images/internship.svg"
+            style="width: 100%; height: auto;" width="539" height="121"
+            loading="lazy" border="0" alt="Internship at OpenGenus">
+        </picture>
+        </a>
+      </div>
+
+        <!--
+        <center>
+        <a href="http://internship.opengenus.org" target="_blank">
+        <picture>
+          <source media="(max-width: 530px)" srcset="/assets/images/internship-small.svg">
+          <img src="/assets/images/internship.svg" style='width:100%;' border="0" alt="Internship at OpenGenus">
+        </picture>
+        </a>
+        </center>
+
+        <p style="text-align: center;"><a href="https://amzn.to/3n4OHrJ" target="_blank">Get this book -> Problems on Array: For Interviews and Competitive Programming</a></p>
+        -->
+
+        <style>
+        .adsense_widget_iq_1 { width: 320px; height: 100px; }
+        @media(min-width: 670px) { .adsense_widget_iq_1 { width: 468px; height: 60px; } }
+        @media(min-width: 1000px) { .adsense_widget_iq_1 { width: 728px; height: 90px; } }
+        </style>
+        <ins class="adsbygoogle adsense_widget_iq_1"
+             style="display:block"
+             data-ad-client="ca-pub-6329206778297580"
+             data-ad-slot="5373864615"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <!-- top (below header) multiplex -->
+        <ins class="adsbygoogle adsense_widget_iq_1"
+             style="display:block"
+             data-ad-format="autorelaxed"
+             data-ad-client="ca-pub-6329206778297580"
+             data-ad-slot="7656465295"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <!-- top ad (og iq) -->
+        <!--
+        <ins class="adsbygoogle adsense_widget_iq_1"
+             style="display:block"
+             data-ad-client="ca-pub-6329206778297580"
+             data-ad-slot="3019138753"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        -->
+
+        <div></div>
+<p id="time">Reading time: 20 minutes | Coding time: 5 minutes </p>
+<div class="table_of_contents">
+    <div href="#explanation" class="in_page_link">Explanation</div>
+    <div href="#example" class="in_page_link">Example</div>
+    <div href="#complexity" class="in_page_link">Complexity</div>
+    <div href="#pseudocode" class="in_page_link">Pseudocode</div>
+    <div href="#implementations" class="in_page_link">Implementations</div>
+    <div href="#application" class="in_page_link">Application</div>
+    <div href="#questions" class="in_page_link">Questions</div>
+</div>
+<p>The <strong>Karatsuba algorithm</strong> is a fast multiplication algorithm that uses a <strong>divide and conquer approach</strong> to multiply two numbers. It was discovered by Anatoly Karatsuba in 1960 and published in 1962.<br>
+This happens to be the first algorithm to demonstrate that multiplication can be performed at a lower complexity than O(N^2) which is by following the classical multiplication technique. Using this algorithm, multiplication of two n-digit numbers is reduced from O(N^2) to O(N^(log 3) that is O(N^1.585).</p>
+<p>In this article at <a href="https://iq.opengenus.org/">OpenGenus</a>, we will explore this game changing algorithm to perform fast integer multiplication.</p>
+<p>$$n^(log_2 3) \approx n^(1.585)$$</p>
+<!-- ![opengenus-1](/content/images/2018/05/opengenus-1.svg) -->
+<p>It is faster than the naive algorithm for multiplying two numbers which requires $n^2$ single-digit products. As an example, the Karatsuba algorithm requires 3^10 = <strong>59,049 single-digit multiplications</strong> to multiply <strong>two 1024-digit numbers</strong> (n = 1024 = 2^10), whereas the classical algorithm requires (2<sup>10)</sup>2 = <strong>1,048,576 single-digit multiplications</strong>.</p>
+<p>The <strong>key idea</strong> is to reduce the four sub-problems in multiplication to three unique problems. Thus, on calculating the three unique sub-problems, the original four sub-problems are solved using addition or subtraction operation. Hence, the speed-up.</p>
+<br>
+<h3 id="explanation">Explanation</h3>
+<br>
+<p>Basically Karatsuba stated that if we have to multiply two n-digit numbers x and y, this can be done with the following operations, assuming that B is the base of m and m &lt; n (for instance: m = n/2)</p>
+<p>First both numbers <strong>x</strong> and <strong>y</strong> can be represented as <strong>x1,x2</strong> and <strong>y1,y2</strong> with the following formula.</p>
+<p>$$x = x1 * B^m + x2$$<br>
+$$y = y1 * B^m + y2$$</p>
+<p>The product x X y becomes the following product:</p>
+<p>$$xy = (x1 * B^m + x2)(y1 * B^m + y2)$$<br>
+$$ =&gt; xy = x1 * y1 * B^(2m) + x1 * y2 * B^m + x2 * y1 * B^m + x2 * y2$$</p>
+<p>Observe that there are <strong>4 sub-problems</strong>: X1 * Y1, X1 * Y2, X2 * Y1 and X2 * Y2</p>
+<p><strong>With a clever insight, we can reduce this to 3 sub-problems and hence, the acceleration.</strong></p>
+<p>Let $a = x1 * y1$, $b = x1 * y2 + x2 * y1$ and $c = x2 * y2$</p>
+<p>Finally, <strong>x X y</strong> becomes:</p>
+<p>$$xy = a * B^(2m) + b * B^m + c$$</p>
+<p>That is why Karatsuba came up with the brilliant idea to calculate b with the following formula:</p>
+<p>$$b = (x1 + x2)(y1 + y2) - a - c$$</p>
+<h3 id="example">Example</h3>
+<pre><code>Consider the following multiplication: 47 x 78
+ 
+x = 47
+x = 4 * 10 + 7
+ 
+x1 = 4
+x2 = 7
+ 
+y = 78
+y = 7 * 10 + 8
+ 
+y1 = 7
+y2 = 8
+ 
+a = x1 * y1 = 4 * 7 = 28
+c = x2 * y2 = 7 * 8 = 56
+b = (x1 + x2)(y1 + y2) - a - c = 11 * 15 - 28 - 56
+
+11 * 15 can in turn be multiplied using Karatsuba Algorithm
+</code></pre>
+<br>
+<h3 id="complexity">Complexity</h3>
+<br>
+<p>Assuming that we replace two of the multiplications with only one makes the program faster. The question is how fast. Karatsuba improves the multiplication process by replacing the initial complexity of $O(n^2)$ by $O(n^(log3))$, which as you can see on the diagram below is much faster for big n.</p>
+<p>$$T(n)=3 * T(n/2) + O(n)$$</p>
+<a href="https://iq.opengenus.org/content/images/2018/05/Karatsuba-Complexity.png" data-lightbox="post title"> 
+   <img src="https://iq.opengenus.org/content/images/2018/05/Karatsuba-Complexity.png" alt="Complexity of Karatsuba algorithm"> 
+</a>
+<p>O(n^2) grows much faster than O(n^lg3)</p>
+<h3 id="pseudocode">Pseudocode</h3>
+<pre><code>procedure karatsuba(num1, num2)
+  if (num1 &lt; 10) or (num2 &lt; 10)
+    return num1*num2
+    
+  *calculates the size of the numbers*
+  m = max(size_base10(num1), size_base10(num2))
+  m2 = m/2
+  
+  *split the digit sequences about the middle*
+  high1, low1 = split_at(num1, m2)
+  high2, low2 = split_at(num2, m2)
+  
+  *3 calls made to numbers approximately half the size*
+  z0 = karatsuba(low1, low2)
+  z1 = karatsuba((low1 + high1), (low2 + high2))
+  z2 = karatsuba(high1, high2)
+  return (z2 * 10 ^ (2 * m2)) + ((z1 - z2 - z0) * 10 ^ (m2)) + (z0)
+</code></pre>
+<h3 id="implementations">Implementations</h3>
+<ul class="tabs">
+  <li class="" rel="tab1">Python</li>
+</ul>
+<div class="tab_container">
+   <h3 class="d_active tab_drawer_heading" rel="tab1">Python</h3>
+   <div id="tab1" class="tab_content">
+   <pre><code class="language-Python">
+        def karatsuba(x,y):
+            if len(str(x)) == 1 or len(str(y)) == 1:
+                return x*y
+            else:
+                n = max(len(str(x)),len(str(y)))
+                nby2 = n / 2
+                a = x / 10**(nby2)
+                b = x % 10**(nby2)
+                c = y / 10**(nby2)
+                d = y % 10**(nby2)
+                ac = karatsuba(a,c)
+                bd = karatsuba(b,d)
+                ad_plus_bc = karatsuba(a+b,c+d) - ac - bd
+                prod = ac * 10**(2*nby2) + (ad_plus_bc * 10**nby2) + bd
+                return prod
+</code></pre>
+</div> 
+</div>
+<h3 id="application">Application</h3>
+<br>
+<p>The Karatsuba algorithm is very efficient in tasks that invlove integer multiplication. It can also be useful for polynomial multiplications.</p>
+<p>It is to be noted that faster multiplication algorithms do exist.</p>
+<div id="questions"></div>
+<div class="container" style="width:100%;">
+<h4>What is the space complexity of Karatsuba Algorithm?</h4>
+<section class="questionlist">
+<div class="correct_option">O(log N)</div>
+<div class="wrong_option">O(N)</div>
+<div class="wrong_option">O(1)</div>
+<div class="wrong_option">O(N^2)</div>
+<div class="wrong_option">O(N^1.585)</div>
+</section>
+</div>
+
+
+
+        <!-- after content multiplex -->
+        <ins class="adsbygoogle adsense_widget_iq_1"
+             style="display:block"
+             data-ad-format="autorelaxed"
+             data-ad-client="ca-pub-6329206778297580"
+             data-ad-slot="8550309798"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <!-- after content iq.opengenus.org -->
+        <ins class="adsbygoogle adsense_widget_iq_1"
+             style="display:block"
+             data-ad-client="ca-pub-6329206778297580"
+             data-ad-slot="2677909004"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+      </section>
+      </div>
+
+  </div>
+  </div>
+
+  <!-- shuffle button -->
+  <section class="subscribe-form">
+    <h3 class="subscribe-form-title">Subscribe to OpenGenus IQ: Pioneering AI Engineering &amp; Algorithms</h3>
+    <p>Get the latest posts delivered right to your inbox</p>
+  </section>
+
+  <footer>
+    <div class="post-full-footer">
+
+      <section class="author-card">
+        <img class="author-profile-image" src="https://iq.opengenus.org/content/images/2020/01/olawale.jpg" alt="Olawale Dosunmu" loading="lazy"/>
+
+        <section class="author-card-content">
+          <h4 class="author-card-name"><a href="/author/olawale/">Olawale Dosunmu</a></h4>
+          <p>Data Scientist and Business Intelligence Analyst | Master of Science in Finance and Investment at Bradford University School of Management | B.Sc in Banking and Finance at Covenant University
+</p>
+        </section>
+      </section>
+
+      <div class="post-full-footer-right">
+        <a class="author-card-button" href="/author/olawale/">Read More</a>
+      </div>
+
+
+    </div>
+    
+    <script async src="https://use.fontawesome.com/0206006232.js"></script>
+
+    <p style="font-size:30px; text-align:center">Vote for Author of this article: <span id="votebutton"><i class="fa fa-heart-o" aria-hidden="true" ></i> </span></p>
+    
+
+    <div class="Authors_list">
+    <p>Improved & Reviewed by:</p><br>
+
+      <a href="/author/opengenus-2/" title="OpenGenus Tech Review Team" class="author author-6a5b9ee96e22d1081cb450ef opengenus-2">
+        <div class="Authors_tag_item " href="/author/opengenus-2/" title="OpenGenus Tech Review Team">
+          <img class="co-author-profile-image" src="https://iq.opengenus.org/content/images/2018/06/logo_small.png" alt="OpenGenus Tech Review Team" loading="lazy" />
+          OpenGenus Tech Review Team
+        </div>
+      </a>
+
+    </div>
+
+  </footer>
+
+  <script>
+var wrapper = document.getElementById("main-posts");
+var post_full = document.getElementById("post-full");
+var right_side_bar = document.getElementById("right-side-bar");
+var sidebar = document.getElementById("left-side-bar");
+
+window.onscroll = function () {
+  document
+    .getElementById("left-side-bar")
+    .setAttribute(
+      "style",
+      "display:block;width:" +
+        document.getElementById("left-side-bar-wrapper").offsetWidth +
+        "px"
+    );
+  document.getElementById("left-side-bar").style.width =
+    document.getElementById("left-side-bar-wrapper").offsetWidth;
+  //sidebar < main
+  if (sidebar.offsetHeight < post_full.offsetHeight) {
+    //sidebar < screen - stick to top
+    if (sidebar.offsetHeight < window.innerHeight) {
+      if (
+        wrapper.getBoundingClientRect().bottom < window.innerHeight &&
+        wrapper.getBoundingClientRect().bottom < sidebar.offsetHeight
+      ) {
+        wrapper.classList.remove("fix-top");
+        wrapper.classList.add("flex-bottom");
+      } else if (wrapper.getBoundingClientRect().top < 0) {
+        wrapper.classList.add("fix-top");
+        wrapper.classList.remove("flex-bottom");
+      } else {
+        wrapper.classList.remove("fix-top");
+        wrapper.classList.remove("flex-bottom");
+      }
+    }
+    //wrapper taller than sidebar - stick to bottom
+    else if (sidebar.offsetHeight < wrapper.offsetHeight) {
+      if (wrapper.getBoundingClientRect().bottom < window.innerHeight) {
+        wrapper.classList.remove("fix-bottom");
+        wrapper.classList.add("flex-bottom");
+      } else if (
+        wrapper.getBoundingClientRect().bottom >
+        sidebar.offsetHeight + window.innerHeight
+      ) {
+        wrapper.classList.remove("fix-bottom");
+        wrapper.classList.remove("flex-bottom");
+      } else {
+        wrapper.classList.add("fix-bottom");
+        wrapper.classList.remove("flex-bottom");
+      }
+    }
+  }
+};
+</script>  
+  </article>
+
+  </div>
+</main>
+
+<aside class="read-next outer">
+  <div class="inner">
+    <div class="read-next-feed">
+      <article class="read-next-card"   >
+        <header class="read-next-card-header">
+          <small class="read-next-card-header-sitetitle">&mdash; OpenGenus IQ: Pioneering AI Engineering &amp; Algorithms &mdash;</small>
+          <h3 class="read-next-card-header-title"><a href="/tag/algorithm/">Algorithms</a></h3>
+        </header>
+        <div class="read-next-divider"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/></svg>
+</div>
+        <div class="read-next-card-content">
+          <ul>
+            <li><a href="/chameleon-hash/">Chameleon Hash: Balancing Security and Flexibility in Cryptographic Hashing</a></li>
+            <li><a href="/chromatic-art-gallery-problems/">Navigating the Vibrant Landscape of Chromatic Art Gallery Problems</a></li>
+            <li><a href="/daily-43/">DAILY43: Algorithmic Problems for Coding Interviews: Easy level, C++ edition</a></li>
+          </ul>
+        </div>
+        <footer class="read-next-card-footer">
+          <a href="/tag/algorithm/">See all 954 posts
+            →</a>
+        </footer>
+      </article>
+
+      <article class="post-card post tag-double-ended-queue tag-queue tag-data-structure tag-hash-import-2026-07-15-19-54 tag-hash-import-2026-07-18-15-42 no-image no-image">
+    <div class="post-card-content">
+        <a class="post-card-content-link" href="/double-ended-queue-deque/">
+            <header class="post-card-header">
+                    <span class="post-card-tags">double ended queue</span>
+                <h2 class="post_card_title">Double Ended Queue (Deque)</h2>
+            </header>
+            <section class="post_card_excerpt">
+                <p>A double ended queue also called as deque (pronounced as ‘deck’ or ‘dequeue’) is a list in which the elements can be inserted or deleted at either end in constant time.</p>
+            </section>
+        </a>
+        <footer class="post-card-meta">
+                <img class="author-profile-image" src="https://iq.opengenus.org/content/images/2018/05/IMG_20180420_200146_689-1-.jpg" alt="Pankaj Sharma" />
+            <span class="post-card-author">Pankaj Sharma</span>
+        </footer>
+    </div>
+</article>
+
+      <article class="post-card post tag-graph-algorithm tag-maximum-flow tag-edmonds-karp-algorithm tag-hash-import-2026-07-15-19-54 tag-hash-import-2026-07-18-15-42 no-image no-image">
+    <div class="post-card-content">
+        <a class="post-card-content-link" href="/edmonds-karp-algorithm-for-maximum-flow/">
+            <header class="post-card-header">
+                    <span class="post-card-tags">Graph Algorithms</span>
+                <h2 class="post_card_title">Edmonds Karp Algorithm for maximum flow</h2>
+            </header>
+            <section class="post_card_excerpt">
+                <p>Edmonds–Karp algorithm is an optimized implementation of the Ford–Fulkerson method for computing the maximum flow in a flow network in O(V E^2) time instead of O(E |max_flow|) in case of Ford-Fulkerson algorithm.</p>
+            </section>
+        </a>
+        <footer class="post-card-meta">
+                <img class="author-profile-image" src="https://iq.opengenus.org/content/images/2018/02/1-1.jpg" alt="Alexa Ryder" />
+            <span class="post-card-author">Alexa Ryder</span>
+        </footer>
+    </div>
+</article>
+
+    </div>
+  </div>
+
+</aside>
+
+<style>
+.searchbar {
+height: 36px;
+margin-bottom: 1em;
+margin-top: 1em;
+margin-right: 1.5em;
+}
+.searchbartext {
+height: 33px;
+font-size:  17px;
+padding-left: 4%;
+mix-blend-mode: normal;
+border: 2px solid rgb(163, 163, 163);
+background-color: #ccc;
+color: #ffffff;
+box-sizing: border-box;
+backdrop-filter: blur(4px);
+border-radius: 10px;
+} 
+input:active {
+border: none;
+}
+::placeholder{
+    color: #ffffff;
+}
+.btn-default{
+position: absolute;
+color: rgb(255, 255, 255);
+margin-left: 4.1em;
+margin-top: -1.9em;
+background: transparent;
+width: 32px;
+height: 31px;
+}
+@media screen and (max-width: 417px){
+.btn-default{
+  margin-left: 10%;
+ }
+.searchbartext {
+  width: 125%;
+ }
+}
+@media screen and (max-width: 350px){
+  .btn-default{
+  margin-left: 5%;
+ }
+ </style>
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="https://iq.opengenus.org">
+                <img src="https://iq.opengenus.org/content/images/2018/02/sq_logo.png" alt="OpenGenus IQ: Pioneering AI Engineering &amp; Algorithms icon" />
+            <span>OpenGenus IQ: Pioneering AI Engineering &amp; Algorithms</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">&mdash;</span>
+    <div class="floating-header-title">Karatsuba Algorithm (for fast integer multiplication)</div>
+
+    <center>
+<form class="searchbar" role="search" method="get">
+  <input
+     autocomplete="off"
+     name="q"
+     placeholder="Search ..."
+    title="search here"
+    type="text"
+    id="name11"
+    onclick="openmodal();"
+ class="searchbartext"
+/>
+<button type="submit" disabled class="btn-default">
+&#x1F50D;
+</button>
+</form>
+</center>
+    <div class="floating-header-share">
+
+        <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
+</svg>
+</div>
+            <!-- Twitter-->
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=You will love this article on Karatsuba%20Algorithm%20(for%20fast%20integer%20multiplication)&amp;url=https://iq.opengenus.org/karatsuba-algorithm/"
+            onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+        </a>
+            <!-- Facebook-->
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://iq.opengenus.org/karatsuba-algorithm/"
+            onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+        </a>
+    </div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+
+
+    <footer class="site-footer outer">
+      <div class="site-footer-content inner">
+        <section class="copyright"><a href="https://iq.opengenus.org">OpenGenus IQ</a> &copy; 2026 All rights
+          reserved ™ [email: <a href="mailto:team@opengenus.org">team@opengenus.org</a>]</section>
+        <nav class="site-footer-nav">
+          <a href="https://iq.opengenus.org">Top Posts</a>
+          <a href="https://www.linkedin.com/company/opengenus" target="_blank"
+            rel="noopener">LinkedIn</a>
+          <a href="https://x.com/OpenGenus" target="_blank" rel="noopener">Twitter</a>
+        </nav>
+      </div>
+    </footer>
+
+  </div>
+
+  <script async src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+  </script>
+  <script async type="text/javascript" src="/assets/js/jquery.fitvids.js?v=03120c38e9"></script>
+
+  <!--
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script type="text/javascript" src="/assets/js/chatbox.js?v=03120c38e9"></script>
+  -->
+
+  <script async type="text/javascript" src="/assets/js/tab.js?v=03120c38e9"></script>
+  <!-- for syntax highlight -->
+  <script async type="text/javascript" src="/assets/js/prism.js?v=03120c38e9"></script>
+  
+
+  <!-- for search
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
+  -->
+
+
+  <script>
+var testid = "a"+/karatsuba-algorithm/;
+
+document.addEventListener('DOMContentLoaded', function (){
+  var content = document.querySelector('.post-full-content');
+  var ad = document.getElementById('og-internship-ad');
+  if (!content || !ad) return;
+  var paras = content.querySelectorAll('p');
+  var target = paras[1] || paras[0];
+  if (target) {target.insertAdjacentElement('afterend', ad); ad.style.display = 'block'; }
+})
+</script>
+
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  };
+</script>
+<script type="text/javascript" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+<script async type="text/javascript" src="/assets/js/lightbox/lightbox.js?v=03120c38e9"></script>
+<script async type="text/javascript" src="/assets/js/compressed-post.js?v=03120c38e9"></script>
+<link rel="stylesheet" type="text/css" href="/assets/css/compressed-post.css" />
+<style>
+.ai-course-note{
+  border:1px solid #d4af37;
+  border-radius:12px;
+  padding:22px 24px;
+  margin:32px 0;
+  background:#faf7ee
+}
+
+.ai-course-note h3{
+  margin:0 0 6px;
+  font-size:1.15rem
+}
+
+.ai-course-note p{
+  margin:0 0 14px;
+  color:#333
+}
+
+.ai-course-btn{
+  display:inline-block;
+  margin:4px 8px 0 0;
+  padding:10px 16px;
+  border-radius:8px;
+  background:#111;
+  color:#fff;
+  text-decoration:none;
+  font-weight:600
+}
+
+.ai-course-btn.ghost{
+  background:#fff;
+  color:#111;
+  border:1px solid #111
+}
+</style>
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113523348-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-113523348-1');
+</script>
+
+<!-- Google tag (gtag.js) updated GA4 -->
+<!--
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J52E0WVTY3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J52E0WVTY3');
+</script>
+-->
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script type="text/javascript">
+var parent = document.querySelector(".kg-card-markdown p:nth-of-type(2)");
+if(parent)
+	parent.insertAdjacentHTML('afterend', '<!-- in between content (post+page) --> <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6329206778297580" data-ad-slot="4297062681" data-ad-format="auto" data-full-width-responsive="true"></ins> <script> (adsbygoogle = window.adsbygoogle || []).push({}); <\/script>');
+</script>
+
+<!-- KEY TAKEAWAY -->
+<style>
+/* Styling for the key takeaway box */
+.key-takeaways {
+    background-color: #d3d3d3; /* Light grey color */
+    color: #333; /* Dark grey text for contrast */
+    border: 1px solid #ccc; /* Light grey border */
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.3);
+}
+.key-takeaways ul {
+    list-style-type: disc;
+    margin-left: 10px;
+}
+.key-takeaways h2 {
+    text-decoration: underline;
+    margin-bottom: 20px;
+}
+</style> <script type="text/javascript" async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        processEscapes: true
+    }
+});
+</script>
+</body>
+</html>
